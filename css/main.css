@@ -20,6 +20,7 @@ canvas{
 
 #draggable_div {
   display: none;
+  height, width: 200px;
   position: absolute;
   padding: 30px;
   z-index: 9;
@@ -30,7 +31,9 @@ canvas{
 }
 
 #draggable_div_header {
-  padding: 30px;
+  text-align: center;
+  height, width: 200px;
+  padding: 10px;
   cursor: move;
   z-index: 10;
   color: black;
