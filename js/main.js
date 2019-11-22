@@ -96,8 +96,9 @@ function dragElement(elmnt) {
 function drawPolygon(ctx, rgbaValue) {
   ctx.beginPath();
   first_flag = true;
+  randomSides = getRandomInt(2, 4);
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < randomSides; i++) {
     randomHeight1 = getRandomInt(0, ctx.canvas.height);
     randomHeight2 = getRandomInt(0, ctx.canvas.height);
     randomWidth1 = getRandomInt(0, ctx.canvas.width);
