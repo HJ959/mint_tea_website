@@ -1,5 +1,17 @@
-function showAbout() {
-  var x = document.getElementById("draggable_div");
+
+function showAbout(elmnt) {
+  var x = document.getElementById("draggableDivAbout");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+
+    x.visibility = "visible";
+  } else {
+    x.style.display = "block";
+    x.visibility = "hidden";
+  }
+}
+function showCat(elmnt) {
+  var x = document.getElementById("draggableDivCat");
   if (x.style.display === "block") {
     x.style.display = "none";
 
@@ -12,13 +24,14 @@ function showAbout() {
 
 
 // Make the DIV element draggable:
-dragElement(document.getElementById("draggable_div"));
+dragElement(document.getElementById("draggableDivAbout"));
+dragElement(document.getElementById("draggableDivCat"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 400, pos4 = 400;
-  if (document.getElementById(elmnt.id + '_header')) {
+  if (document.getElementById(elmnt.id + 'Header')) {
     // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + '_header').onmousedown = dragMouseDown;
+    document.getElementById(elmnt.id + 'Header').onmousedown = dragMouseDown;
   } else {
     // otherwise, move the DIV from anywhere inside the DIV:
     elmnt.onmousedown = dragMouseDown;
