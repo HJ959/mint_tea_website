@@ -65,11 +65,11 @@ function dragElement(elmnt) {
      time = 4000;
      resizeCanvasToDisplaySize(ctx.canvas);
 
-     //ctx.globalAlpha = 0.5;
+     ctx.globalAlpha = 0.5;
+
      drawPolygon(ctx, 'rgba(0, 200, 230, 0.6)');
      drawPolygon(ctx, 'rgba(200, 50, 220, 0.4)');
      drawPolygon(ctx, 'rgba(200, 240, 0, 0.5)');
-
 
      ctx.save();
      ctx.restore();
