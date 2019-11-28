@@ -74,13 +74,11 @@
   }
 }
 
-
 .navbar-default .navbar-brand {
  color:black;
  background-color: rgba(200, 250, 50, 0);
 
 }
-
 .navbar {
   color: black;
   background-color: rgba(0, 250, 50, 0);
@@ -88,7 +86,6 @@
 }
 .navbar-default .navbar-nav > li > a {
   color:black;
-
 }
 
 body {
