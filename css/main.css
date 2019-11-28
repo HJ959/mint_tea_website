@@ -7,12 +7,17 @@
     text-align: left;
     height: 100%;
     width: 100%;
+    color: white;
   }
   #draggableDivCat {
     background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
   #draggableDivAbout {
     background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+  }
+  #catImage {
+    height: 50%;
+    width: 50%;
   }
 }
 
@@ -25,6 +30,7 @@
     text-align: left;
     height: 100%;
     width: 100%;
+    color: white;
   }
   #catImage {
     height: 50%;
@@ -46,17 +52,18 @@
     padding: 30px;
     z-index: 9;
     text-align: left;
-    height: 70%;
-    width: 30%;
-    background-image: linear-gradient(rgba(250,200,100,1), rgba(0,0,0,0));
+    height: 30vh;
+    width: 50vw;
+    color: white;
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
   #draggableDivAboutHeader {
     text-align: center;
-    height, width: 200px;
+
     padding: 10px;
     cursor: move;
     z-index: 10;
-    color: black;
+    color: white;
   }
   #draggableDivCat {
     display: none;
@@ -64,39 +71,40 @@
     padding: 30px;
     z-index: 9;
     text-align: left;
-    height: 70%;
-    width: 40%;
-    background-image: linear-gradient(rgba(255,255,255,1), rgba(0,0,0,0));
+    height: 50vh;
+    width: 30vw;
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+    color: white;
   }
   #draggableDivCatHeader {
     text-align: center;
-    height, width: 200px;
+    height, width: 30vh 30vw;
     padding: 10px;
     cursor: move;
     z-index: 10;
-    color: black;
+    color: white;
   }
   #catImage {
-    height: 50%;
-    width: 50%;
+    height: 30%;
+    width: 30%;
   }
 }
 
 .navbar-default .navbar-brand {
  color:white;
  background-color: rgba(0, 0, 0, 0);
- margin: 0;
+ margin: 0 0 0 2vw;
 
 }
 .navbar {
   color: white;
   background-color: rgba(0, 0, 0, 1);
   border: 0px solid rgba(0,0,0,0);
-  margin: 0;
+  margin: 0 0 0 2vw;
 }
 .navbar-default .navbar-nav > li > a {
   color:white;
-  margin: 0;
+  margin: 0 0 0 2vw;
 }
 
 
@@ -111,10 +119,7 @@ h1 {
   font-size: 5em;
 }
 
-#catImage {
-  height: 90%;
-  width: 90%;
-}
+
 
 html {
 height: 100%;
@@ -127,12 +132,12 @@ canvas {
     width: 100%;
   }
 #draggableDivCat, #draggableDivAbout {
-  box-shadow: 0 4px 8px 0 rgba(0, 200, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
   font-size: 2em;
   font-weight: 700;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-  margin-bottom: 10px;
+  border-bottom: 3px solid white;
+  margin-bottom: 2vw;
 }
