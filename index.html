@@ -11,8 +11,9 @@
 
 
   <body>
+   <div class="container">
     <nav class="navbar navbar-default">
-  <div class="container">
+
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -21,7 +22,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">MINTTEA</a>
+      <a class="navbar-brand" href="https://mint-tea-records.co.uk">MINTTEA</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,14 +30,15 @@
         <li><a onClick="showAbout()">INFO</a></li>
         <li><a onClick="showCat()">CATALOGUE</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://mintteaa.bandcamp.com/">SHOP</a></li>
+        <li><a href="https://www.facebook.com/minttearecords/">FACEBOOK</a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
-  <div class="page">
-    <canvas id="c"></canvas>
-  </div>
+  <canvas id="c"></canvas>
+
 </div>
 
 <!-- Draggable DIV CATALOGUE -->
@@ -75,8 +77,10 @@
    <p>Website designed by <a href="https://www.henryjames.space">Boulderhead<a/></p>
       </div>
 </div>
-</div>
+  </div><!-- /.container-fluid -->
 
+
+  <script src="js/three.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
