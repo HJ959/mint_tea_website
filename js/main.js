@@ -66,7 +66,7 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-
+/*
 ////////////////////////////////////////////////////////////////////////////////
    // taken from: https://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
    const ctx = document.querySelector("#c").getContext("2d");
@@ -82,6 +82,8 @@ function dragElement(elmnt) {
      drawPolygon(ctx, 'rgba(0, 200, 230, 0.6)');
      drawPolygon(ctx, 'rgba(200, 50, 220, 0.4)');
      drawPolygon(ctx, 'rgba(200, 240, 0, 0.5)');
+     drawPolygon(ctx, 'rgba(100, 220, 50, 0.2)');
+     drawPolygon(ctx, 'rgba(0, 0, 255, 0.1)');
 
      ctx.save();
      ctx.restore();
@@ -130,7 +132,7 @@ function drawPolygon(ctx, rgbaValue) {
   return(ctx);
 }
 
-
+*/
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
    }
@@ -141,3 +143,61 @@ function getRandomInt(min, max) {
   //The maximum is exclusive and the minimum is inclusive
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+
+
+  var scene = new THREE.Scene();
+
+  // There's no reason to set the aspect here because we're going
+  // to set it every frame anyway so we'll set it to 2 since 2
+  // is the the aspect for the canvas default size (300w/150h = 2)
+  const camera = new THREE.PerspectiveCamera(70, 2, 1, 1000);
+
+  var renderer = new THREE.WebGLRenderer();
+
+  document.body.appendChild( renderer.domElement );
+
+  var geometry = new THREE.SphereBufferGeometry( 100, 100, 100 );
+
+  var wireframe = new THREE.WireframeGeometry( geometry );
+
+  var line = new THREE.LineSegments( wireframe );
+  line.material.depthTest = false;
+  line.material.opacity = 0.5;
+  line.material.transparent = true;
+
+  scene.add( line );
+
+  camera.position.z = 5;
+
+  function animate(time) {
+    time *= 0.001;  // seconds
+
+    resizeCanvasToDisplaySize();
+
+    line.rotation.x = time * 0.05;
+    line.rotation.y = time * 0.01;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+
+  // taken from Stackoverflow: https://stackoverflow.com/questions/29884485/threejs-canvas-size-based-on-container
+  function resizeCanvasToDisplaySize() {
+    const canvas = renderer.domElement;
+    // look up the size the canvas is being displayed
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+
+    // adjust displayBuffer size to match
+    if (canvas.width !== width || canvas.height !== height) {
+      // you must pass false here or three.js sadly fights the browser
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      // update any render target sizes here
+    }
+  }

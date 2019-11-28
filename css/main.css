@@ -9,10 +9,10 @@
     width: 100%;
   }
   #draggableDivCat {
-    background-image: linear-gradient(rgba(255,255,255,1), rgba(0,0,0,0));
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
   #draggableDivAbout {
-    background-image: linear-gradient(rgba(250,200,100,1), rgba(0,0,0,0));
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
 }
 
@@ -26,11 +26,15 @@
     height: 100%;
     width: 100%;
   }
+  #catImage {
+    height: 50%;
+    width: 50%;
+  }
   #draggableDivCat {
-    background-image: linear-gradient(rgba(255,255,255,1), rgba(0,0,0,0));
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
   #draggableDivAbout {
-    background-image: linear-gradient(rgba(250,200,100,1), rgba(0,0,0,0));
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
 }
 
@@ -72,29 +76,35 @@
     z-index: 10;
     color: black;
   }
+  #catImage {
+    height: 50%;
+    width: 50%;
+  }
 }
 
 .navbar-default .navbar-brand {
- color:black;
- background-color: rgba(200, 250, 50, 0);
+ color:white;
+ background-color: rgba(0, 0, 0, 0);
+ margin: 0;
 
 }
 .navbar {
-  color: black;
-  background-color: rgba(0, 250, 50, 0);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 250, 0.3), 0 6px 20px 0 rgba(0, 200, 0, 0.19);
+  color: white;
+  background-color: rgba(0, 0, 0, 1);
+  border: 0px solid rgba(0,0,0,0);
+  margin: 0;
 }
 .navbar-default .navbar-nav > li > a {
-  color:black;
+  color:white;
+  margin: 0;
 }
 
 
 body {
-  background-position: center;
+  background-color: black;
+  margin: 0;
   font-family: 'Roboto', sans-serif;
-  padding: 2vw;
 
-  height: 95vh;
 }
 h1 {
   font-weight: 700;
@@ -102,17 +112,19 @@ h1 {
 }
 
 #catImage {
-  height: 50%;
-  width: 50%;
+  height: 90%;
+  width: 90%;
 }
 
 html {
-
+height: 100%;
 }
 
-canvas{
+canvas {
     position: absolute;
     z-index: -1;
+    height: 100%;
+    width: 100%;
   }
 #draggableDivCat, #draggableDivAbout {
   box-shadow: 0 4px 8px 0 rgba(0, 200, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
