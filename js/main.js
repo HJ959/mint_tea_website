@@ -1,15 +1,3 @@
-
-function showAbout(elmnt) {
-  var x = document.getElementById("draggableDivAbout");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-
-    x.visibility = "visible";
-  } else {
-    x.style.display = "block";
-    x.visibility = "hidden";
-  }
-}
 function showCat(elmnt) {
   var x = document.getElementById("draggableDivCat");
   if (x.style.display === "block") {
@@ -21,11 +9,22 @@ function showCat(elmnt) {
     x.visibility = "hidden";
   }
 }
+function showAbout(elmnt) {
+  var x = document.getElementById("draggableDivAbout");
+  if (x.style.display === "block") {
+    x.style.display = "none";
 
+    x.visibility = "visible";
+  } else {
+    x.style.display = "block";
+    x.visibility = "hidden";
+  }
+}
 
 // Make the DIV element draggable:
-dragElement(document.getElementById("draggableDivAbout"));
 dragElement(document.getElementById("draggableDivCat"));
+dragElement(document.getElementById("draggableDivAbout"));
+
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 400, pos4 = 400;
