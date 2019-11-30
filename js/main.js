@@ -155,6 +155,10 @@ function getRandomInt(min, max) {
 
   var renderer = new THREE.WebGLRenderer();
 
+  // White directional light at half intensity shining from the top.
+  var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+  scene.add( directionalLight );
+
   document.body.appendChild( renderer.domElement );
 
   var geometry = new THREE.SphereBufferGeometry( 400, 100, 100 );
@@ -205,8 +209,6 @@ function getRandomInt(min, max) {
 
     line.rotation.x = time * 0.05;
     line.rotation.y = time * 0.01;
-    gltf.rotation.x = time * 0.05;
-    gltf.rotation.y = time * 0.01;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
