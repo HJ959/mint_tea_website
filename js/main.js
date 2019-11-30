@@ -212,6 +212,10 @@ function getRandomInt(min, max) {
     directionalLight.rotation.x = time * 0.05;
     directionalLight.rotation.y = time * 0.01;
 
+    if (gltf) {
+      gltf.scene.children[0].rotation.x = time * 0.05;
+    }
+
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
