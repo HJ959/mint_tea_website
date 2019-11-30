@@ -185,19 +185,14 @@ function getRandomInt(min, max) {
 		gltf.scenes; // Array<THREE.Scene>
 		gltf.cameras; // Array<THREE.Camera>
 		gltf.asset; // Object
-
 	},
   // called while loading is progressing
 	function ( xhr ) {
-
 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
 	},
 	// called when loading has errors
 	function ( error ) {
-
 		console.log( 'An error happened' );
-
 	}
 );
 
@@ -210,6 +205,8 @@ function getRandomInt(min, max) {
 
     line.rotation.x = time * 0.05;
     line.rotation.y = time * 0.01;
+    gltf.rotation.x = time * 0.05;
+    gltf.rotation.y = time * 0.01;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
