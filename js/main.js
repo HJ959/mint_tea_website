@@ -209,8 +209,8 @@ function getRandomInt(min, max) {
 
     line.rotation.x = time * 0.05;
     line.rotation.y = time * 0.01;
-    directionalLigh.rotation.x = time * 0.05;
-    directionalLigh.rotation.y = time * 0.01;
+    DirectionalLight.rotation.x = time * 0.05;
+    DirectionalLight.rotation.y = time * 0.01;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
