@@ -173,33 +173,35 @@ function getRandomInt(min, max) {
   scene.add( line );
 
   // Instantiate a loader
-  var loader = new THREE.GLTFLoader();
-  var gltf;
+  var model;
 
-  // Load a glTF resource
-  loader.load(
-	// resource URL
-	  'media/metamaterial.glb',
-	  // called when the resource is loaded
-	  function ( gltf ) {
+  function loadObject() {
+    var loader = new THREE.GLTFLoader();
 
-		scene.add( gltf.scene );
+    // Load a glTF resource
+    loader.load(
+  	// resource URL
+  	  'media/metamaterial.glb',
+  	  // called when the resource is loaded
+  	  function ( gltf ) {
 
-		gltf.animations; // Array<THREE.AnimationClip>
-		gltf.scene; // THREE.Scene
-		gltf.scenes; // Array<THREE.Scene>
-		gltf.cameras; // Array<THREE.Camera>
-		gltf.asset; // Object
-	},
-  // called while loading is progressing
-	function ( xhr ) {
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-	},
-	// called when loading has errors
-	function ( error ) {
-		console.log( 'An error happened' );
-	}
-);
+        model = gltf;
+  		  scene.add( model );
+
+  	},
+    // called while loading is progressing
+  	function ( xhr ) {
+  		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  	},
+  	// called when loading has errors
+  	function ( error ) {
+  		console.log( 'An error happened' );
+  	}
+   );
+  }
+
+
+
 
   camera.position.z = 5;
 
@@ -213,8 +215,8 @@ function getRandomInt(min, max) {
     directionalLight.rotation.x = time * 0.05;
     directionalLight.rotation.y = time * 0.01;
 
-    if (gltf) {
-      gltf.scene.children[0].rotation.x = time * 0.05;
+    if (model) {
+      model.rotation.x = time * 0.05;
     }
 
     renderer.render(scene, camera);
