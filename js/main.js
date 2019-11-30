@@ -157,16 +157,49 @@ function getRandomInt(min, max) {
 
   document.body.appendChild( renderer.domElement );
 
-  var geometry = new THREE.SphereBufferGeometry( 100, 100, 100 );
+  var geometry = new THREE.SphereBufferGeometry( 400, 100, 100 );
 
   var wireframe = new THREE.WireframeGeometry( geometry );
 
   var line = new THREE.LineSegments( wireframe );
-  line.material.depthTest = false;
+  line.material.depthTest = true;
   line.material.opacity = 0.5;
   line.material.transparent = true;
 
   scene.add( line );
+
+  // Instantiate a loader
+  var loader = new THREE.GLTFLoader();
+
+  // Load a glTF resource
+  loader.load(
+	// resource URL
+	  'media/metamaterial.glb',
+	  // called when the resource is loaded
+	  function ( gltf ) {
+
+		scene.add( gltf.scene );
+
+		gltf.animations; // Array<THREE.AnimationClip>
+		gltf.scene; // THREE.Scene
+		gltf.scenes; // Array<THREE.Scene>
+		gltf.cameras; // Array<THREE.Camera>
+		gltf.asset; // Object
+
+	},
+  // called while loading is progressing
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+		console.log( 'An error happened' );
+
+	}
+);
 
   camera.position.z = 5;
 
