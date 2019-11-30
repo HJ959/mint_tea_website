@@ -217,7 +217,7 @@ function getRandomInt(min, max) {
     directionalLight.rotation.y = time * 0.01;
 
 
-    model.scene.children[0].rotation.x = time * 0.05;
+    model.rotation.x = time * 0.05;
 
 
     renderer.render(scene, camera);
