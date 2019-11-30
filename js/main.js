@@ -209,8 +209,6 @@ function getRandomInt(min, max) {
 
     line.rotation.x = time * 0.05;
     line.rotation.y = time * 0.01;
-    gltf.rotation.x = time * 0.05;
-    gltf.rotation.y = time * 0.01;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
