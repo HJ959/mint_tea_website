@@ -174,6 +174,7 @@ function getRandomInt(min, max) {
 
   // Instantiate a loader
   var loader = new THREE.GLTFLoader();
+  var gltf;
 
   // Load a glTF resource
   loader.load(
