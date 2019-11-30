@@ -186,7 +186,7 @@ function getRandomInt(min, max) {
   	  function ( gltf ) {
 
         model = gltf;
-  		  scene.add( model );
+  		  scene.add( model.scene );
 
   	},
     // called while loading is progressing
@@ -203,7 +203,6 @@ function getRandomInt(min, max) {
 
 
 
-
   camera.position.z = 5;
 
   function animate(time) {
@@ -217,7 +216,7 @@ function getRandomInt(min, max) {
     directionalLight.rotation.y = time * 0.01;
 
     if (model) {
-      model.rotation.x = time * 0.05;
+      model.scene.children[0].rotation.x = time * 0.05;
     }
 
     renderer.render(scene, camera);
