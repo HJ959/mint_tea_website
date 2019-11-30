@@ -172,21 +172,6 @@ function getRandomInt(min, max) {
 
   scene.add( line );
 
-  // Instantiate a loader
-  var model;
-
-  var loader = new THREE.GLTFLoader();
-
-  // Load a glTF resource
-  const url = 'media/metamaterial.glb';
-
-  loader.load(url, (glft) => {
-    const root = gltf.scene;
-    scene.add(root);
-  });
-
-
-
   camera.position.z = 5;
 
   function animate(time) {
@@ -196,18 +181,11 @@ function getRandomInt(min, max) {
 
     line.rotation.x = time * 0.05;
     line.rotation.y = time * 0.01;
-    directionalLight.rotation.x = time * 0.05;
-    directionalLight.rotation.y = time * 0.01;
-
-
-    model.rotation.x = time * 0.05;
-
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
-
-
+  requestAnimationFrame(animate);
 
   // taken from Stackoverflow: https://stackoverflow.com/questions/29884485/threejs-canvas-size-based-on-container
   function resizeCanvasToDisplaySize() {
