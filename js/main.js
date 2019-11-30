@@ -199,6 +199,7 @@ function getRandomInt(min, max) {
   	}
    );
   }
+  loadObject();
 
 
 
