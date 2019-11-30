@@ -175,32 +175,15 @@ function getRandomInt(min, max) {
   // Instantiate a loader
   var model;
 
-  function loadObject() {
-    var loader = new THREE.GLTFLoader();
+  var loader = new THREE.GLTFLoader();
 
-    // Load a glTF resource
-    loader.load(
-  	// resource URL
-  	  'media/metamaterial.glb',
-  	  // called when the resource is loaded
-  	  function ( gltf ) {
+  // Load a glTF resource
+  const url = 'media/metamaterial.glb';
 
-        model = gltf;
-  		  scene.add( model.scene );
-        requestAnimationFrame(animate);
-
-  	},
-    // called while loading is progressing
-  	function ( xhr ) {
-  		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-  	},
-  	// called when loading has errors
-  	function ( error ) {
-  		console.log( 'An error happened' );
-  	}
-   );
-  }
-  loadObject();
+  loader.load(url, (glft) => {
+    const root = gltf.scene;
+    scene.add(root);
+  });
 
 
 
