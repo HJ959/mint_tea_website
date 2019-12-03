@@ -58,14 +58,12 @@
     padding: 1vw;
     z-index: 9;
     text-align: left;
-    height: 60vh;
-    width: 50vw;
+    height: 450px;
+    width: 600px;
     color: white;
   }
   #draggableDivCatHeader {
     text-align: center;
-    height, width: 50vh 50vw;
-    padding: 1vw;
     cursor: move;
     z-index: 10;
     color: white;
@@ -123,7 +121,16 @@ canvas {
 
 #draggableDivCat, #draggableDivAbout {
   padding: inherit;
-  box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  /*box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
+
+#draggableDivCat, #draggableDivCatHeader {
+  top: 15%;
+  left: 50%;
+}
+#draggableDivAbout, #draggableDivAboutHeader {
+  top: 15%;
+  left: 1%;
 }
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
@@ -137,7 +144,7 @@ canvas {
 
 #innerBorder {
   box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 1), 2px 2px 2px 2px rgba(0, 0, 0, 0.19);
-  margin: 1%;
-  padding: 1%;
+  margin: 4%;
+  padding: 4%;
   display: inline-block;
 }

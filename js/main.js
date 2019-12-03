@@ -1,3 +1,5 @@
+// want to make these two functions behave in the following anyway
+// if catalogue open close info, if info open close catalogue
 function showCat(elmnt) {
   var x = document.getElementById("draggableDivCat");
   if (x.style.display === "block") {

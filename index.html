@@ -1,99 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     <title>MINTTEA</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-  </head>
+</head>
 
-
-  <body>
+<body>
     <div class="container">
+        <nav class="navbar navbar-default">
 
-     <nav class="navbar navbar-default">
-
-     <!-- Brand and toggle get grouped for better mobile display -->
-     <div class="navbar-header">
-       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-         <span class="sr-only">Toggle navigation</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-       </button>
-       <a class="navbar-brand" href="https://mint-tea-records.co.uk">MINTTEA</a>
-     </div>
-     <!-- Collect the nav links, forms, and other content for toggling -->
-     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <ul class="nav navbar-nav">
-         <li><a onClick="showAbout()">INFO</a></li>
-         <li><a onClick="showCat()">CATALOGUE</a></li>
-       </ul>
-       <ul class="nav navbar-nav navbar-right">
-         <li><a href="https://mintteaa.bandcamp.com/">SHOP</a></li>
-         <li><a href="https://www.facebook.com/minttearecords/">FACEBOOK</a></li>
-       </ul>
-     </div><!-- /.navbar-collapse -->
-  </nav>
-  </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://mint-tea-records.co.uk">MINTTEA</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a onClick="showAbout()">INFO</a></li>
+                    <li><a onClick="showCat()">CATALOGUE</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://mintteaa.bandcamp.com/">SHOP</a></li>
+                    <li><a href="https://www.facebook.com/minttearecords/">FACEBOOK</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    </div>
     <canvas id="c"></canvas>
 
-
-<!-- Draggable DIV CATALOGUE -->
-  <div class="about" id="draggableDivCat">
-    <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-    <div id="draggableDivCatHeader">CATALOGUE</div>
-    <button></button>
-      <div>
-          <img class="catImage" src="https://i.pinimg.com/564x/74/93/01/74930158df08d54266e6eefc5160868d.jpg" alt="MT001 Contemporary Reality Artwork">
-      </div>
-      <div>
-          <img class="catImage" src="https://i.pinimg.com/564x/7e/74/d7/7e74d74aad0c27332b9e2368a32df49c.jpg" alt="MT002 Above The Crowds">
-      </div>
-      <div>
-          <img class="catImage" src="https://i.pinimg.com/564x/16/86/6b/16866ba64c837bc8059a288fab0886fc.jpg" alt="MT003 400TX">
-      </div>
-      <div>
-          <img class="catImage" src="https://i.pinimg.com/564x/bf/3e/02/bf3e021b046650999c206cb391f4102e.jpg" alt="MT004 Dansolso's Jungle">
-      </div>
-  </div>
-
-
-
-<!-- Draggable DIV about -->
-
-<div class="about" id="draggableDivAbout">
-   <div class="row">
- <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
- <div id="draggableDivAboutHeader">LABEL INFO</div>
-   <div id="innerBorder" class="col-md-3">
-   <p>Mint Tea is a record label based in Bristol, UK run by owner Henry James.</p>
+    <!-- Draggable DIV CATALOGUE -->
+    <div class="about" id="draggableDivCat">
+        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+        <div id="draggableDivCatHeader">CATALOGUE</div>
+        <button></button>
+        <div>
+            <img class="catImage" src="https://i.pinimg.com/564x/74/93/01/74930158df08d54266e6eefc5160868d.jpg" alt="MT001 Contemporary Reality Artwork">
+        </div>
+        <div>
+            <img class="catImage" src="https://i.pinimg.com/564x/7e/74/d7/7e74d74aad0c27332b9e2368a32df49c.jpg" alt="MT002 Above The Crowds">
+        </div>
+        <div>
+            <img class="catImage" src="https://i.pinimg.com/564x/16/86/6b/16866ba64c837bc8059a288fab0886fc.jpg" alt="MT003 400TX">
+        </div>
+        <div>
+            <img class="catImage" src="https://i.pinimg.com/564x/bf/3e/02/bf3e021b046650999c206cb391f4102e.jpg" alt="MT004 Dansolso's Jungle">
+        </div>
     </div>
-   <div id="innerBorder" class="col-md-3">
-   <p>Launched in 2016, the label aims to evolve alongside the dance scene, taking snapshots from different perspectives.</p>
- </div>
-<div id="innerBorder" class="col-md-3">
-   <p>Demos / Info: info@mintteaa.co.uk</p>
-   <p>Website designed by <a href="https://www.henryjames.space">Boulderhead</a></p>
-      </div>
-<div id="innerBorder" class="col-md-3">
-   <p>Demo Policy</p>
-   <p>If sending demos please send as streaming links and limit to around 4 tracks.</p>
-      </div>
-</div>
-  </div><!-- /.container-fluid -->
 
+    <!-- Draggable DIV about -->
 
-  <script src="js/three.js"></script>
-  <script type="text/javascript" src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-          crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <div class="about" id="draggableDivAbout">
+        <div class="row">
+            <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+            <div id="draggableDivAboutHeader">LABEL INFO</div>
+            <div id="innerBorder" class="col-md-3">
+                <p>Mint Tea is a record label based in Bristol, UK run by owner Henry James.</p>
+            </div>
+            <div id="innerBorder" class="col-md-3">
+                <p>Launched in 2016, the label aims to evolve alongside the dance scene, taking snapshots from different perspectives.</p>
+            </div>
+            <div id="innerBorder" class="col-md-3">
+                <p>Demos / Info: info@mintteaa.co.uk</p>
+                <p>Website designed by <a href="https://www.henryjames.space">Boulderhead</a></p>
+            </div>
+            <div id="innerBorder" class="col-md-3">
+                <p>Demo Policy</p>
+                <p>If sending demos please send as streaming links and limit to around 4 tracks.</p>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
 
+    <script src="js/three.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  </body>
+</body>
+
 </html>
