@@ -68,73 +68,7 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-/*
-////////////////////////////////////////////////////////////////////////////////
-   // taken from: https://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
-   const ctx = document.querySelector("#c").getContext("2d");
-   ctx.canvas.width = window.innerWidth;
-   ctx.canvas.height = window.innerHeight;
-////////////////////////////////////////////////////////////////////////////////
-   async function render(time) {
-     time = 4000;
-     resizeCanvasToDisplaySize(ctx.canvas);
 
-     ctx.globalAlpha = 0.5;
-
-     drawPolygon(ctx, 'rgba(0, 200, 230, 0.6)');
-     drawPolygon(ctx, 'rgba(200, 50, 220, 0.4)');
-     drawPolygon(ctx, 'rgba(200, 240, 0, 0.5)');
-     drawPolygon(ctx, 'rgba(100, 220, 50, 0.2)');
-     drawPolygon(ctx, 'rgba(0, 0, 255, 0.1)');
-
-     ctx.save();
-     ctx.restore();
-     await sleep(time);
-     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-     requestAnimationFrame(render);
-   }
-   requestAnimationFrame(render);
-////////////////////////////////////////////////////////////////////////////////
-   function resizeCanvasToDisplaySize(canvas) {
-      // look up the size the canvas is being displayed
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
-
-      // If it's resolution does not match change it
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
-        return true;
-      }
-      return false;
-   }
-////////////////////////////////////////////////////////////////////////////////
-function drawPolygon(ctx, rgbaValue) {
-  ctx.beginPath();
-  first_flag = true;
-  randomSides = getRandomInt(2, 4);
-
-  for (i = 0; i < randomSides; i++) {
-    randomHeight1 = getRandomInt(0, ctx.canvas.height);
-    randomHeight2 = getRandomInt(0, ctx.canvas.height);
-    randomWidth1 = getRandomInt(0, ctx.canvas.width);
-    randomWidth2 = getRandomInt(0, ctx.canvas.width);
-
-    randomColour = getRandomInt(0, 8);
-
-    if (first_flag === true) {
-      ctx.fillStyle = rgbaValue;
-      ctx.moveTo(randomHeight1, randomHeight2)
-      first_flag = false;
-    }
-    ctx.lineTo(randomHeight2, randomWidth2)
-  }
-  ctx.closePath();
-  ctx.fill();
-  return(ctx);
-}
-
-*/
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
    }

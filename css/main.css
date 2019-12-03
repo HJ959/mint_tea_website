@@ -2,7 +2,8 @@
 @media only screen and (max-width: 500px) {
   .about {
     display: none;
-    padding: 30px;
+    padding: 4vw;
+    margin: 4vw;
     z-index: 9;
     text-align: left;
     height: 100%;
@@ -20,7 +21,8 @@
 @media only screen and (min-width: 501px) and (max-width: 960px) {
   .about {
     display: none;
-    padding: 30px;
+    padding: 4vw;
+    margin: 4vw;
     z-index: 9;
     text-align: left;
     height: 100%;
@@ -28,8 +30,8 @@
     color: white;
   }
   #catImage {
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
   }
 
 }
@@ -68,9 +70,17 @@
     z-index: 10;
     color: white;
   }
-  .catImage {
+  #catImage {
     height: 50%;
     width: 50%;
+  }
+  #draggableDivCat, #draggableDivCatHeader {
+    top: 15%;
+    left: 50%;
+  }
+  #draggableDivAbout, #draggableDivAboutHeader {
+    top: 15%;
+    left: 1%;
   }
 }
 /*===============================================================*/
@@ -83,7 +93,11 @@ body {
 
 h1 {
   font-weight: 700;
-  font-size: 5em;
+  font-size: 5vw;
+}
+p1 {
+  font-weight: 700;
+  font-size: 2vw;
 }
 
 html {
@@ -95,7 +109,24 @@ canvas {
     z-index: -1;
     height: 100%;
     width: 100%;
-  }
+}
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
 
 .navbar-default .navbar-brand {
  color:white;
@@ -122,15 +153,6 @@ canvas {
 #draggableDivCat, #draggableDivAbout {
   padding: inherit;
   /*box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);*/
-}
-
-#draggableDivCat, #draggableDivCatHeader {
-  top: 15%;
-  left: 50%;
-}
-#draggableDivAbout, #draggableDivAboutHeader {
-  top: 15%;
-  left: 1%;
 }
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
