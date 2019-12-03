@@ -9,18 +9,13 @@
     width: 100%;
     color: white;
   }
-  #draggableDivCat {
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
-  }
-  #draggableDivAbout {
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
-  }
+
   #catImage {
     height: 50%;
     width: 50%;
   }
 }
-
+/*===============================================================*/
 /* Tablet Styles */
 @media only screen and (min-width: 501px) and (max-width: 960px) {
   .about {
@@ -36,31 +31,23 @@
     height: 50%;
     width: 50%;
   }
-  #draggableDivCat {
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
-  }
-  #draggableDivAbout {
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
-  }
-}
 
+}
+/*===============================================================*/
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
   #draggableDivAbout {
     display: none;
     position: absolute;
-    padding: 30px;
+    padding: 1vw;
     z-index: 9;
     text-align: left;
-    height: 30vh;
+    height: 70vh;
     width: 50vw;
     color: white;
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
   }
   #draggableDivAboutHeader {
     text-align: center;
-
-    padding: 10px;
     cursor: move;
     z-index: 10;
     color: white;
@@ -68,58 +55,38 @@
   #draggableDivCat {
     display: none;
     position: absolute;
-    padding: 30px;
+    padding: 1vw;
     z-index: 9;
     text-align: left;
-    height: 50vh;
-    width: 30vw;
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+    height: 60vh;
+    width: 50vw;
     color: white;
   }
   #draggableDivCatHeader {
     text-align: center;
-    height, width: 30vh 30vw;
-    padding: 10px;
+    height, width: 50vh 50vw;
+    padding: 1vw;
     cursor: move;
     z-index: 10;
     color: white;
   }
-  #catImage {
-    height: 30%;
-    width: 30%;
+  .catImage {
+    height: 50%;
+    width: 50%;
   }
 }
-
-.navbar-default .navbar-brand {
- color:white;
- background-color: rgba(0, 0, 0, 0);
- margin: 0 0 0 2vw;
-
-}
-.navbar {
-  color: white;
-  background-color: rgba(0, 0, 0, 1);
-  border: 0px solid rgba(0,0,0,0);
-  margin: 0 0 0 2vw;
-}
-.navbar-default .navbar-nav > li > a {
-  color:white;
-  margin: 0 0 0 2vw;
-}
-
-
+/*===============================================================*/
+/* Main styles */
 body {
   background-color: black;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-
 }
+
 h1 {
   font-weight: 700;
   font-size: 5em;
 }
-
-
 
 html {
 height: 100%;
@@ -131,13 +98,46 @@ canvas {
     height: 100%;
     width: 100%;
   }
+
+.navbar-default .navbar-brand {
+ color:white;
+ background-color: rgba(0, 0, 0, 0);
+ margin: 0 0 0 2vw;
+}
+
+.navbar {
+  color: white;
+  background-color: rgba(0, 0, 0, 1);
+  border: 0px solid rgba(0,0,0,0);
+  margin: 0 0 0 2vw;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color:white;
+  margin: 0 0 0 2vw;
+}
+
+.row {
+  margin: 0px;
+}
+
 #draggableDivCat, #draggableDivAbout {
+  padding: inherit;
   box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
   font-size: 2em;
   font-weight: 700;
-  border-bottom: 3px solid white;
+  padding-bottom: 2vw;
   margin-bottom: 2vw;
+  box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#innerBorder {
+  box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 1), 2px 2px 2px 2px rgba(0, 0, 0, 0.19);
+  margin: 1vw;
+  padding: 1vw;
+  display: inline-block;
 }
