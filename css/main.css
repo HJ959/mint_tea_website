@@ -7,13 +7,13 @@
     z-index: 9;
     text-align: left;
     height: 100%;
-    width: 100%;
+    width: 90%;
     color: white;
   }
 
   #catImage {
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 40%;
   }
 }
 /*===============================================================*/
@@ -26,12 +26,12 @@
     z-index: 9;
     text-align: left;
     height: 100%;
-    width: 100%;
+    width: 90%;
     color: white;
   }
   #catImage {
-    height: 100%;
-    width: 100%;
+    height: 40%;
+    width: 40%;
   }
 
 }
@@ -71,8 +71,8 @@
     color: white;
   }
   #catImage {
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
   }
   #draggableDivCat, #draggableDivCatHeader {
     top: 15%;
@@ -101,7 +101,14 @@ p1 {
 }
 
 html {
-height: 100%;
+  height: 100%;
+}
+
+button {
+  color: white;
+  margin: 4%;
+  background-color: rgba(0,0,0,0);
+  box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 canvas {
@@ -111,8 +118,9 @@ canvas {
     width: 100%;
 }
 
+/* For right left arrow buttons */
 i {
-  border: solid black;
+  border: solid white;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -127,6 +135,7 @@ i {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+/*================================*/
 
 .navbar-default .navbar-brand {
  color:white;
@@ -152,7 +161,6 @@ i {
 
 #draggableDivCat, #draggableDivAbout {
   padding: inherit;
-  /*box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
@@ -161,12 +169,15 @@ i {
   padding-bottom: 2vw;
   margin-bottom: 2vw;
   box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 #innerBorder {
   box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 1), 2px 2px 2px 2px rgba(0, 0, 0, 0.19);
-  margin: 4%;
-  padding: 4%;
-  display: inline-block;
+  margin: 2%;
+  padding: 2%;
+
+}
+
+#catMT002, #catMT003, #catMT004 {
+  display: none;
 }

@@ -1,5 +1,3 @@
-// want to make these two functions behave in the following anyway
-// if catalogue open close info, if info open close catalogue
 function showCat(elmnt) {
   var x = document.getElementById("draggableDivCat");
   if (x.style.display === "block") {
@@ -21,6 +19,33 @@ function showAbout(elmnt) {
     x.style.display = "block";
     x.visibility = "hidden";
   }
+}
+
+/*
+Need a fucntion that:
+  Need to create each catContent div
+
+  has a list of stored DIV IDs for each catalogue entry
+  if left arrow clicked then display previous div
+  if right arrow clicked then display next div
+*/
+var catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004'];
+var counterIDList = 0;
+function catCycleNext(elmnt, counterIDList) {
+  counterIDList = counterIDList;
+  //document.getElementById("catMT001")
+  counterIDList = counterIDList + 1
+  console.log(counterIDList);
+
+  return(counterIDList)
+}
+function catCyclePrevious(elmnt, counterIDList) {
+  counterIDList = counterIDList;
+  //document.getElementById("catMT001")
+  counterIDList = counterIDList - 1
+  console.log(counterIDList);
+
+  return(counterIDList)
 }
 
 // Make the DIV element draggable:
