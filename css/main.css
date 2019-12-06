@@ -164,6 +164,8 @@ i {
 
 #draggableDivCat, #draggableDivAbout {
   padding: inherit;
+  background-color: rgba(0,0,255,0.6)
+
 }
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
@@ -171,11 +173,11 @@ i {
   font-weight: 700;
   padding-bottom: 2vw;
   margin-bottom: 2vw;
-  box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #innerBorder {
-  box-shadow: 2px 2px 2px 2px rgba(200, 200, 200, 1), 2px 2px 2px 2px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 2%;
   padding: 2%;
 }
