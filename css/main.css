@@ -15,6 +15,11 @@
     height: 40%;
     width: 40%;
   }
+  #draggableDivCat, #draggableDivAbout {
+    padding: inherit;
+    background-color: rgba(0,0,255,1);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 }
 /*===============================================================*/
 /* Tablet Styles */
@@ -32,6 +37,11 @@
   #catImage {
     height: 40%;
     width: 40%;
+  }
+  #draggableDivCat, #draggableDivAbout {
+    padding: inherit;
+    background-color: rgba(0,0,255,1);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
 }
@@ -54,6 +64,11 @@
     z-index: 10;
     color: white;
   }
+  #draggableDivCat, #draggableDivAbout {
+    padding: inherit;
+    background-color: rgba(0,0,255,0.6);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  }
   #draggableDivCat {
     display: none;
     position: absolute;
@@ -71,8 +86,8 @@
     color: white;
   }
   #catImage {
-    height: 100%;
-    width: 100%;
+    height: 40%;
+    width: 40%;
   }
   #draggableDivCat, #draggableDivCatHeader {
     top: 15%;
@@ -162,11 +177,7 @@ i {
   margin: 0px;
 }
 
-#draggableDivCat, #draggableDivAbout {
-  padding: inherit;
-  background-color: rgba(0,0,255,0.6)
 
-}
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
   font-size: 2em;
@@ -184,4 +195,9 @@ i {
 
 #catMT002, #catMT003, #catMT004 {
   display: none;
+}
+
+#catImage {
+  height: 80%;
+  width: 80%;
 }
