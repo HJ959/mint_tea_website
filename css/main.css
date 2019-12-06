@@ -72,7 +72,7 @@
   #draggableDivCat {
     display: none;
     position: absolute;
-    padding: 1vw;
+
     z-index: 9;
     text-align: left;
     height: 450px;
@@ -175,6 +175,10 @@ i {
 
 .row {
   margin: 0px;
+}
+.navbar-collapse {
+  padding-right: 7%;
+  padding-left: 7%;
 }
 
 
