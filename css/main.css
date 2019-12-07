@@ -119,6 +119,10 @@ html {
   height: 100%;
 }
 
+iframe {
+  margin: 2vh 0 0 2vw;
+}
+
 button {
   color: white;
   margin: 4%;
@@ -180,8 +184,6 @@ i {
   padding-right: 7%;
   padding-left: 7%;
 }
-
-
 
 #draggableDivCatHeader, #draggableDivAboutHeader {
   font-size: 2em;

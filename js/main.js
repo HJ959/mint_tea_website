@@ -1,4 +1,4 @@
-function showCat(elmnt) {
+function showCat() {
   var x = document.getElementById("draggableDivCat");
   if (x.style.display === "block") {
     x.style.display = "none";
@@ -9,7 +9,7 @@ function showCat(elmnt) {
     x.visibility = "hidden";
   }
 }
-function showAbout(elmnt) {
+function showAbout() {
   var x = document.getElementById("draggableDivAbout");
   if (x.style.display === "block") {
     x.style.display = "none";
@@ -29,23 +29,42 @@ Need a fucntion that:
   if left arrow clicked then display previous div
   if right arrow clicked then display next div
 */
-var catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004'];
-var counterIDList = 0;
-function catCycleNext(elmnt, counterIDList) {
-  counterIDList = counterIDList;
-  //document.getElementById("catMT001")
-  counterIDList = counterIDList + 1
-  console.log(counterIDList);
+function catCycleNext() {
+  var elmntNext = document.getElementById("nextButton");
+  var elmntPrevious = document.getElementById("previousButton");
+  var buttonValue = elmntNext.value;
 
-  return(counterIDList)
+  buttonValue++
+  if (buttonValue == 4) {
+    buttonValue = 0;
+  }
+  returnCatInfo(buttonValue);
+  elmntNext.value = buttonValue;
 }
-function catCyclePrevious(elmnt, counterIDList) {
-  counterIDList = counterIDList;
-  //document.getElementById("catMT001")
-  counterIDList = counterIDList - 1
-  console.log(counterIDList);
 
-  return(counterIDList)
+function catCyclePrevious() {
+  var elmntNext = document.getElementById("nextButton");
+  var elmntPrevious = document.getElementById("previousButton");
+  var buttonValue = elmntNext.value;
+
+  buttonValue--
+  if (buttonValue == -1) {
+    buttonValue = 3;
+  }
+  returnCatInfo(buttonValue);
+  elmntNext.value = buttonValue;
+}
+
+// displays the selected div on the catalogue screen
+function returnCatInfo(buttonValue) {
+  var catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004'];
+  for (item in catIDList) {
+    var itemID = document.getElementById(catIDList[item]);
+    itemID.style.display = "none";
+  }
+  var catID = document.getElementById(catIDList[buttonValue]);
+  catID.style.display = "inline";
+  console.log(catID.display);
 }
 
 // Make the DIV element draggable:
