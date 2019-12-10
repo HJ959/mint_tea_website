@@ -10,6 +10,9 @@
     width: 90%;
     color: white;
   }
+  p {
+    font-size: calc(1em + 2vw);
+  }
 
   #catImage {
     height: 40%;
@@ -48,47 +51,6 @@
 /*===============================================================*/
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-  #draggableDivAbout {
-    display: none;
-    position: absolute;
-    padding: 1vw;
-    z-index: 9;
-    text-align: left;
-    height: 450px;
-    width: 600px;
-    color: white;
-  }
-  #draggableDivAboutHeader {
-    text-align: center;
-    cursor: move;
-    z-index: 10;
-    color: white;
-  }
-  #draggableDivCat, #draggableDivAbout {
-    padding: inherit;
-    background-color: rgba(0,0,255,0.6);
-    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  #draggableDivCat {
-    display: none;
-    position: absolute;
-
-    z-index: 9;
-    text-align: left;
-    height: 450px;
-    width: 600px;
-    color: white;
-  }
-  #draggableDivCatHeader {
-    text-align: center;
-    cursor: move;
-    z-index: 10;
-    color: white;
-  }
-  #catImage {
-    height: 40%;
-    width: 40%;
-  }
   #draggableDivCat, #draggableDivCatHeader {
     top: 15%;
     left: 50%;
@@ -97,9 +59,58 @@
     top: 15%;
     left: 1%;
   }
+  #draggableDivCat, #draggableDivAbout {
+    background-color: rgba(0,0,255,0.6);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #draggableDivAbout {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    text-align: left;
+    width: 600px;
+    color: white;
+  }
+  #draggableDivAboutHeader {
+    text-align: center;
+    cursor: move;
+    padding: 0;
+    z-index: 10;
+    color: white;
+  }
+
+  #draggableDivCat {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    text-align: left;
+    width: 600px;
+    color: white;
+  }
+  #draggableDivCatHeader {
+    text-align: center;
+    padding: 0;
+    cursor: move;
+    z-index: 10;
+    color: white;
+  }
+  #catImage {
+    height: 40%;
+    width: 40%;
+  }
+
+  p {
+    font-size: calc(0.5em + 0.5vw);
+  }
 }
 /*===============================================================*/
 /* Main styles */
+@media screen and (min-width: 50em) {
+  html {
+    font-size: 2vw;
+  }
+}
 body {
   background-color: black;
   margin: 0;
@@ -109,10 +120,6 @@ body {
 h1 {
   font-weight: 700;
   font-size: 5vw;
-}
-p1 {
-  font-weight: 700;
-  font-size: 2vw;
 }
 
 html {
@@ -162,19 +169,19 @@ i {
 .navbar-default .navbar-brand {
  color:white;
  background-color: rgba(0, 0, 0, 0);
- margin: 0 0 0 2vw;
+ margin: 0 0 0 1vw;
 }
 
 .navbar {
   color: white;
   background-color: rgba(0, 0, 0, 1);
   border: 0px solid rgba(0,0,0,0);
-  margin: 0 0 0 2vw;
+  margin: 0 0 0 1vw;
 }
 
 .navbar-default .navbar-nav > li > a {
   color:white;
-  margin: 0 0 0 2vw;
+  margin: 0 0 0 1vw;
 }
 
 .row {
@@ -195,15 +202,17 @@ i {
 
 #innerBorder {
   box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 2%;
-  padding: 2%;
+  margin: 1%;
+  padding: 3%;
+  overflow-y: scroll;
 }
 
-#catMT002, #catMT003, #catMT004 {
+#catMT002, #catMT003, #catMT004, #catMTUSB01 {
   display: none;
 }
 
 #catImage {
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 90%;
+  margin: 5%;
 }

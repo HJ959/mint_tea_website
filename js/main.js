@@ -35,7 +35,7 @@ function catCycleNext() {
   var buttonValue = elmntNext.value;
 
   buttonValue++
-  if (buttonValue == 4) {
+  if (buttonValue == 5) {
     buttonValue = 0;
   }
   returnCatInfo(buttonValue);
@@ -49,7 +49,7 @@ function catCyclePrevious() {
 
   buttonValue--
   if (buttonValue == -1) {
-    buttonValue = 3;
+    buttonValue = 4;
   }
   returnCatInfo(buttonValue);
   elmntNext.value = buttonValue;
@@ -57,7 +57,7 @@ function catCyclePrevious() {
 
 // displays the selected div on the catalogue screen
 function returnCatInfo(buttonValue) {
-  var catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004'];
+  var catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004', 'catMTUSB01'];
   for (item in catIDList) {
     var itemID = document.getElementById(catIDList[item]);
     itemID.style.display = "none";
