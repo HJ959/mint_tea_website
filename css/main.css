@@ -134,7 +134,8 @@ html {
 }
 
 iframe {
-  margin: 2vh 0 0 2vw;
+  margin: 10px;
+
 }
 
 button {
