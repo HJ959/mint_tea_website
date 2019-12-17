@@ -133,11 +133,6 @@ html {
   height: 100%;
 }
 
-iframe {
-  margin: 10px;
-
-}
-
 button {
   color: white;
   margin: 4%;
@@ -155,6 +150,12 @@ canvas {
     box-shadow: 1px 1px 1px 1px rgba(255, 255, 255, 1), 1px 1px 1px 1px rgba(0, 0, 0, 0.19);
 }
 
+iframe {
+  width: 32px;
+  height: 32px;
+  margin: 0 0 0 3vw;
+
+}
 /* For right left arrow buttons */
 i {
   border: solid white;
@@ -189,7 +190,7 @@ i {
 
 .navbar-default .navbar-nav > li > a {
   color:white;
-  margin: 0 0 0 1vw;
+  margin: 0 0 0 3vw;
 }
 
 .row {
