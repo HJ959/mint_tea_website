@@ -129,15 +129,12 @@ function getRandomInt(min, max) {
 
   // White directional light at half intensity shining from the top.
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
-  var directionalLightTwo = new THREE.DirectionalLight( 0xffffff, 1 );
   scene.add( directionalLight );
-  scene.add( directionalLightTwo );
 
   // Create a material
   var textureLoader = new THREE.TextureLoader();
   var map = textureLoader.load('media/parts.png');
   var materialColour = new THREE.MeshPhongMaterial({map: map});
-
 
   // instantiate a loader
   var loader = new THREE.OBJLoader();
