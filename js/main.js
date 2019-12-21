@@ -177,7 +177,7 @@ function getRandomInt(min, max) {
 
   camera.position.z = 5;
 
-  function animate(time) {
+  function animate(time, spaceShuttle) {
     time *= 0.001;  // seconds
 
     resizeCanvasToDisplaySize();
@@ -189,9 +189,9 @@ function getRandomInt(min, max) {
     spaceShuttle.rotation.y = time * 0.03;
 
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animate, spaceShuttle);
   }
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animate, spaceShuttle);
 
   // taken from Stackoverflow: https://stackoverflow.com/questions/29884485/threejs-canvas-size-based-on-container
   function resizeCanvasToDisplaySize() {
