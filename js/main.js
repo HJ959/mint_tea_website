@@ -172,7 +172,7 @@ function getRandomInt(min, max) {
   line.material.opacity = 0.5;
   line.material.transparent = true;
 
-
+  var spaceShuttle = 'undefined';
 
   scene.add( line );
 
