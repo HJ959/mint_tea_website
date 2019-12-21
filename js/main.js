@@ -187,8 +187,8 @@ function getRandomInt(min, max) {
     line.rotation.y = time * 0.01;
 
     if (spaceShuttle !== 'undefined') {
-      spaceShuttle.rotation.x = time * 0.01;
-      spaceShuttle.rotation.y = time * 0.03;
+      spaceShuttle.rotation.x = time * 0.03;
+      spaceShuttle.rotation.y = time * 0.06;
     }
 
     renderer.render(scene, camera);
