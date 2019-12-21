@@ -128,8 +128,10 @@ function getRandomInt(min, max) {
   var renderer = new THREE.WebGLRenderer();
 
   // White directional light at half intensity shining from the top.
-  var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
+  var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+  var directionalLightTwo = new THREE.DirectionalLight( 0xffffff, 1 );
   scene.add( directionalLight );
+  scene.add( directionalLightTwo );
 
   // Create a material
   var textureLoader = new THREE.TextureLoader();
