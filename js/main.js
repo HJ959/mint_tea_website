@@ -21,14 +21,6 @@ function showAbout() {
   }
 }
 
-/*
-Need a fucntion that:
-  Need to create each catContent div
-
-  has a list of stored DIV IDs for each catalogue entry
-  if left arrow clicked then display previous div
-  if right arrow clicked then display next div
-*/
 function catCycleNext() {
   var elmntNext = document.getElementById("nextButton");
   var elmntPrevious = document.getElementById("previousButton");
@@ -138,6 +130,34 @@ function getRandomInt(min, max) {
   // White directional light at half intensity shining from the top.
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
   scene.add( directionalLight );
+
+
+  // instantiate a loader
+  var loader = new THREE.OBJLoader();
+
+  // load a resource
+  loader.load(
+  	// resource URL
+  	'media/space_shuttle_shard.obj',
+  	// called when resource is loaded
+  	function ( object ) {
+
+  		scene.add( object );
+
+  	},
+  	// called when loading is in progresses
+  	function ( xhr ) {
+
+  		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+  	},
+  	// called when loading has errors
+  	function ( error ) {
+
+  		console.log( 'An error happened' );
+
+  	}
+  );
 
   document.body.appendChild( renderer.domElement );
 
