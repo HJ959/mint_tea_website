@@ -131,6 +131,11 @@ function getRandomInt(min, max) {
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
   scene.add( directionalLight );
 
+  // Create a material
+  var textureLoader = new THREE.TextureLoader();
+  var map = textureLoader.load('media/parts.png');
+  var materialColour = new THREE.MeshPhongMaterial({map: map});
+
 
   // instantiate a loader
   var loader = new THREE.OBJLoader();
@@ -145,6 +150,11 @@ function getRandomInt(min, max) {
   		scene.add( object );
       object.name = "spaceShuttle";
       spaceShuttle = scene.getObjectByName( "spaceShuttle" );
+
+      // For any meshes in the model, add our material.
+      object.traverse( function ( node ) {
+        if ( node.isMesh ) node.material = materialColour;
+      } );
 
   	},
   	// called when loading is in progresses
