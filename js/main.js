@@ -171,6 +171,8 @@ function getRandomInt(min, max) {
   line.material.opacity = 0.5;
   line.material.transparent = true;
 
+  var spaceShuttle = scene.getObjectByName( "spaceShuttle" );
+
   scene.add( line );
 
   camera.position.z = 5;
@@ -182,6 +184,9 @@ function getRandomInt(min, max) {
 
     line.rotation.x = time * 0.05;
     line.rotation.y = time * 0.01;
+
+    spaceShuttle.rotation.x = time * 0.01;
+    spaceShuttle.rotation.y = time * 0.03;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
