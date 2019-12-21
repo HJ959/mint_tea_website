@@ -143,6 +143,7 @@ function getRandomInt(min, max) {
   	function ( object ) {
 
   		scene.add( object );
+      object.name = "spaceShuttle";
 
   	},
   	// called when loading is in progresses
