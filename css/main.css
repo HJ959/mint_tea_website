@@ -124,6 +124,14 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+a {
+  color: white;
+  font-weight: 700;
+}
+a:hover {
+  color: rgba(255, 0, 255, 1);
+}
+
 h1 {
   font-weight: 700;
   font-size: 5vw;
@@ -192,6 +200,10 @@ i {
  margin: 0 0 0 1vw;
 }
 
+.navbar-default .navbar-brand:hover {
+  color: rgba(255, 0, 255, 1);
+}
+
 .navbar {
   color: white;
   background-color: rgba(0, 0, 0, 1);
@@ -202,6 +214,10 @@ i {
 .navbar-default .navbar-nav > li > a {
   color:white;
   margin: 0 0 0 3vw;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: rgba(255, 0, 255, 1);
 }
 
 .row {
