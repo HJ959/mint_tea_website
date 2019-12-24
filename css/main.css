@@ -162,7 +162,6 @@ iframe {
   width: 32px;
   height: 32px;
   margin: 0 0 0 3vw;
-
 }
 /* For right left arrow buttons */
 i {
@@ -208,12 +207,12 @@ i {
   color: white;
   background-color: rgba(0, 0, 0, 1);
   border: 0px solid rgba(0,0,0,0);
-  margin: 0 0 0 1vw;
+  margin: 0 0 0 3vw;
 }
 
 .navbar-default .navbar-nav > li > a {
   color:white;
-  margin: 0 0 0 3vw;
+  margin: 0 0 0 2vw;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
