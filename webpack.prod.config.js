@@ -17,11 +17,16 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
+      inject: true,
+      chunks: ['index'],
+      filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
-      filename: "otodojo.html",
-      template: "./src/otodojo.html",
+      template: './src/otodojo.html',
+      inject: true,
+      chunks: ['otodojo'],
+      filename: 'otodojo.html'
     })
   ],
 
@@ -33,7 +38,7 @@ module.exports = {
       },
     ],
   },
-  
+
   optimization: {
     runtimeChunk: "single",
     splitChunks: {
