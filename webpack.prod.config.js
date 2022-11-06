@@ -4,11 +4,17 @@ const WebpackShellPluginNext = require("webpack-shell-plugin-next")
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.js",
+
+  entry: {
+    index: "./src/index.js",
+    otodojo: "./src/otodojo.js"
+  },
+
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
@@ -18,6 +24,7 @@ module.exports = {
       template: "./src/otodojo.html",
     })
   ],
+
   module: {
     rules: [
       {
@@ -26,6 +33,7 @@ module.exports = {
       },
     ],
   },
+  
   optimization: {
     runtimeChunk: "single",
     splitChunks: {
