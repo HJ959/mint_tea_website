@@ -3,9 +3,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   mode: "development",
-  entry: "./src/app.js",
+  entry: {
+    index: "./src/index.js",
+    otodojo: "./src/otodojo.js"
+  },
+
+
   output: {
-    filename: "main.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dev"),
   },
   devServer: {
@@ -13,16 +18,22 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
+      inject: true,
+      chunks: ['index'],
+      filename: 'index.html'
     }),
+    new HtmlWebpackPlugin({
+      template: './src/otodojo.html',
+      inject: true,
+      chunks: ['otodojo'],
+      filename: 'otodojo.html'
+    })
   ],
   module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        enforce: "pre",
-        use: ["style-loader", "css-loader"],
-      },
-    ],
+    rules: [{
+      test: /\.css$/i,
+      use: ["style-loader", "css-loader"],
+    }, ],
   },
 }

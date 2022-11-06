@@ -4,7 +4,7 @@ const WebpackShellPluginNext = require("webpack-shell-plugin-next")
 
 module.exports = {
   mode: "production",
-  entry: "./src/app.js",
+  entry: "./src/index.js",
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
@@ -13,12 +13,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
+    new HtmlWebpackPlugin({
+      filename: "otodojo.html",
+      template: "./src/otodojo.html",
+    })
   ],
   module: {
     rules: [
       {
         test: /\.css$/i,
-        enforce: "pre",
         use: ["style-loader", "css-loader"],
       },
     ],
