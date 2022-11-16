@@ -5,45 +5,77 @@ body {
 }
 
 .container {
+    z-index: -40;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 5fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 5fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 20fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-        ". . . . . . ."
-        ". . . . . . ."
-        ". . . . . . ."
-        ". . . Screen . . ."
-        ". hud hud . . . ."
-        ". hud hud . . . ."
-        ". . . . . . .";
+        "transport"
+        "screen";
 }
 
 #shape1 {
-    z-index: -1;
-    position: absolute;
+    grid-area: screen;
 }
 
 #shape2 {
-    z-index: -1;
-    position: absolute;
+    grid-area: screen;
+
 }
 
 #shape3 {
-    z-index: -1;
-    position: absolute;
+    grid-area: screen;
 }
 
 #shape4 {
-    z-index: -1;
-    position: absolute;
+    grid-area: screen;
 }
 
-#hud {
+#shape5 {
+    grid-area: screen;
+
+}
+
+image {
+    width: 50px;
+    height: 50px;
+}
+
+/* img:hover {
+    -webkit-box-shadow: 0px 0px 19px 12px rgba(255, 255, 255, 0.66);
+    box-shadow: 0px 0px 19px 12px rgba(255, 255, 255, 0.66);
+} */
+
+
+
+/* #hud {
     color: white;
     z-index: 2;
     border-radius: 48px 0px 58px;
-    border: 1px solid #0090FF;
     grid-area: hud;
+} */
+
+button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }

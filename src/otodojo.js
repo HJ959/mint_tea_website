@@ -6,34 +6,36 @@ import * as AUDIO from './otodojoAudio.js'
 function getRndInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+window.getRndInt = getRndInt
 
 function map(value, oldRange, newRange) {
-    var newValue = (value - oldRange[0]) * (newRange[1] - newRange[0]) / (oldRange[1] - oldRange[0]) + newRange[0];
-    return Math.min(Math.max(newValue, newRange[0]), newRange[1]);
+    var newValue = (value - oldRange[0]) * (newRange[1] - newRange[0]) / (oldRange[1] - oldRange[0]) + newRange[0]
+    return Math.min(Math.max(newValue, newRange[0]), newRange[1])
 }
 
 const shape1 = document.getElementById('shape1')
 const shape2 = document.getElementById('shape2')
 const shape3 = document.getElementById('shape3')
 const shape4 = document.getElementById('shape4')
+const shape5 = document.getElementById('shape5')
+const shapes = [shape1, shape2, shape3, shape4, shape5]
 
-shape1.src = `/media/shapes/shape${getRndInt(1,10)}.png`
-shape2.src = `/media/shapes/shape${getRndInt(1,10)}.png`
-shape3.src = `/media/shapes/shape${getRndInt(1,10)}.png`
-shape4.src = `/media/shapes/shape${getRndInt(1,10)}.png`
-
-// for generating biased random numbers for the blur
-const blurValues = {
-    '0': 0,
-    '-1': 0,
-    '-2': 1,
-    '-3': 2,
-    '-4': 4,
-    '-5': 8,
-    '-6': 16
+function shuffleShape(element) {
+    element.src = `/media/shapes/shape${getRndInt(1,10)}.png`
 }
-const blurValuesLength = Object.keys(blurValues).length
-let blurValue = 0
+window.shuffleShape = shuffleShape
+
+shuffleShape(shape1)
+shuffleShape(shape2)
+shuffleShape(shape3)
+shuffleShape(shape4)
+shuffleShape(shape5)
+
+let lowFreqValue = 0
+let midFreqValue = 0
+let midHighFreqValue = 0
+let highFreqValue = 0
+let blurValue = 120
 
 function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     // this function moves and randomizes some 
@@ -42,15 +44,18 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     let screenWidth = screen.width
     let screenHeight = screen.height
     shape.style.transform = `translateX(${getRndInt(0, screenWidth * 0.5)}px) 
-                             translateY(${getRndInt(0, screenHeight * 0.5)}px)
+                             translateY(${getRndInt(0, screenHeight * 0.333)}px)
                              rotate(${getRndInt(0, screenWidth * 0.77)}deg)
                              scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,7])})`
+    shape.style.filter = `blur(0px)`
+    blurValue = 0
 }
 
-shapeMover(shape1)
-shapeMover(shape2)
-shapeMover(shape3)
-shapeMover(shape4)
+shapeMover(shape1, lowFreqValue, midFreqValue, midHighFreqValue)
+shapeMover(shape2, lowFreqValue, midFreqValue, midHighFreqValue)
+shapeMover(shape3, lowFreqValue, midFreqValue, midHighFreqValue)
+shapeMover(shape4, lowFreqValue, midFreqValue, midHighFreqValue)
+shapeMover(shape5, lowFreqValue, midFreqValue, midHighFreqValue)
 
 let start, previousTimeStamp
 let counter1 = 0,
@@ -70,10 +75,17 @@ function step(timestamp) {
 
     // work out the average value per chunk of audio data 
     // it's split into a rough freuqncy range
-    let lowFreqValue = AUDIO.dataArray.slice(3, 6).reduce((partialSum, a) => partialSum + a, 0) / 4
-    let midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
-    let midHighFreqValue = AUDIO.dataArray.slice(500, 600).reduce((partialSum, a) => partialSum + a, 0) / 200
-    let highFreqValue = AUDIO.dataArray.slice(700, 1200).reduce((partialSum, a) => partialSum + a, 0) / 600
+    lowFreqValue = AUDIO.dataArray.slice(3, 6).reduce((partialSum, a) => partialSum + a, 0) / 4
+    midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
+    midHighFreqValue = AUDIO.dataArray.slice(500, 600).reduce((partialSum, a) => partialSum + a, 0) / 200
+    highFreqValue = AUDIO.dataArray.slice(700, 1200).reduce((partialSum, a) => partialSum + a, 0) / 600
+
+    // slowly blur to a set value when low freqencies not being triggered
+    for (var i = 0; i < shapes.length; i++) {
+        shapes[i].style.filter = `blur(${String(blurValue)}px)`
+    }
+    if (blurValue === 0) blurValue = 1
+    if (blurValue < 100) blurValue = blurValue * 1.03
 
     if (midFreqValue > 50) {
         shape1.style.opacity = '0.9'
@@ -82,13 +94,15 @@ function step(timestamp) {
         shape1.style.opacity = `${map(midFreqValue, [0,100], [0,2])}`
         shape3.style.opacity = `${map(midFreqValue, [0,100], [0,2])}`
     }
-    
+
     if (midHighFreqValue > 50) {
-        shape2.style.opacity = '0.9'   
+        shape2.style.opacity = '0.9'
+        shape5.style.opacity = '0.9'
     } else {
-        shape2.style.opacity = `${map(midHighFreqValue, [0,255], [0,2])}`
+        shape2.style.opacity = `${map(midHighFreqValue, [0,100], [0,2])}`
+        shape5.style.opacity = `${map(midHighFreqValue, [0,100], [0,2])}`
     }
-    
+
     if (highFreqValue > 50) {
         shape4.style.opacity = '0.9'
     } else {
@@ -111,6 +125,7 @@ function step(timestamp) {
         }
         if (lowFreqValue > 30 && counter4 > 15) {
             shapeMover(shape4, lowFreqValue, midFreqValue, midHighFreqValue)
+            shapeMover(shape5, lowFreqValue, midFreqValue, midHighFreqValue)
             counter4 = 0
         }
     }

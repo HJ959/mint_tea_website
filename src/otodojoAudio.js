@@ -16,7 +16,7 @@ export const track = audioContext.createMediaElementSource(audioElement)
 // create the analyser node
 export const analyser = new AnalyserNode(audioContext)
 analyser.fftSize = 16384
-analyser.smoothingTimeConstant = 0.9;
+analyser.smoothingTimeConstant = 0.9
 
 export const bufferLength = analyser.frequencyBinCount
 export const dataArray = new Uint8Array(bufferLength)
