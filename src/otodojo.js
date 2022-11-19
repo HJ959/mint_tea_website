@@ -21,7 +21,7 @@ const shape5 = document.getElementById('shape5')
 const shapes = [shape1, shape2, shape3, shape4, shape5]
 
 function shuffleShape(element) {
-    element.src = `/media/shapes/shape${getRndInt(1,10)}.png`
+    element.src = `/media/shapes/shape${getRndInt(1,20)}.png`
 }
 window.shuffleShape = shuffleShape
 
@@ -36,19 +36,32 @@ let midFreqValue = 0
 let midHighFreqValue = 0
 let highFreqValue = 0
 let blurValue = 120
+const minusOrNotArray = ['', '-']
+let firstShapeMove = true
 
 function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     // this function moves and randomizes some 
     // of the parameters for each shape
     const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
-    let screenWidth = screen.width
-    let screenHeight = screen.height
-    shape.style.transform = `translateX(${getRndInt(0, screenWidth * 0.5)}px) 
-                             translateY(${getRndInt(0, screenHeight * 0.333)}px)
-                             rotate(${getRndInt(0, screenWidth * 0.77)}deg)
-                             scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,7])})`
-    shape.style.filter = `blur(0px)`
-    blurValue = 0
+    let screenWidth = window.innerWidth
+    let screenHeight = window.innerHeight
+    if (firstShapeMove) {
+        shape.style.transform = `translateX(${screenWidth * 0.5}px) 
+                                 translateY(${screenHeight * 0.5}}px)
+                                 rotate(${getRndInt(0, screenWidth * 0.77)}deg)
+                                 scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,3])})`
+        shape.style.filter = `blur(0px)`
+        blurValue = 0
+    }
+    if (!firstShapeMove) {
+        shape.style.transform = `translateX(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenWidth * 0.5)}px) 
+                                 translateY(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenHeight * 0.333)}px)
+                                 rotate(${getRndInt(0, screenWidth * 0.77)}deg)
+                                 scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,3])})`
+        shape.style.filter = `blur(0px)
+                              drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
+        blurValue = 0
+    }
 }
 
 shapeMover(shape1, lowFreqValue, midFreqValue, midHighFreqValue)
@@ -56,6 +69,7 @@ shapeMover(shape2, lowFreqValue, midFreqValue, midHighFreqValue)
 shapeMover(shape3, lowFreqValue, midFreqValue, midHighFreqValue)
 shapeMover(shape4, lowFreqValue, midFreqValue, midHighFreqValue)
 shapeMover(shape5, lowFreqValue, midFreqValue, midHighFreqValue)
+firstShapeMove = false
 
 let start, previousTimeStamp
 let counter1 = 0,
@@ -85,7 +99,7 @@ function step(timestamp) {
         shapes[i].style.filter = `blur(${String(blurValue)}px)`
     }
     if (blurValue === 0) blurValue = 1
-    if (blurValue < 100) blurValue = blurValue * 1.03
+    if (blurValue < 500) blurValue = blurValue * 1.1
 
     if (midFreqValue > 50) {
         shape1.style.opacity = '0.9'
