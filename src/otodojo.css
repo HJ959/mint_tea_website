@@ -19,19 +19,23 @@ body {
 
 #shape1 {
     grid-area: screen;
+    transition: 1s;
 }
 
 #shape2 {
     grid-area: screen;
+    transition: 0.5s;
 
 }
 
 #shape3 {
     grid-area: screen;
+    transition: 0.1s;
 }
 
 #shape4 {
     grid-area: screen;
+    
 }
 
 #shape5 {

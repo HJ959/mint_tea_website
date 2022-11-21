@@ -2,6 +2,14 @@ import './main.css'
 import './otodojo.css'
 import * as AUDIO from './otodojoAudio.js'
 
+// track mouse movements
+document.addEventListener('pointermove', logKey)
+let mouseX, mouseY
+function logKey(e) {
+  mouseX = e.clientX
+  mouseY = e.clientY
+}
+
 // random int function
 function getRndInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
@@ -42,6 +50,7 @@ let firstShapeMove = true
 function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     // this function moves and randomizes some 
     // of the parameters for each shape
+
     const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
     let screenWidth = window.innerWidth
     let screenHeight = window.innerHeight
@@ -54,8 +63,8 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
         blurValue = 0
     }
     if (!firstShapeMove) {
-        shape.style.transform = `translateX(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenWidth * 0.5)}px) 
-                                 translateY(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenHeight * 0.333)}px)
+        shape.style.transform = `translateX(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenWidth)}px) 
+                                 translateY(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenHeight)}px)
                                  rotate(${getRndInt(0, screenWidth * 0.77)}deg)
                                  scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,3])})`
         shape.style.filter = `blur(0px)
@@ -102,25 +111,25 @@ function step(timestamp) {
     if (blurValue < 500) blurValue = blurValue * 1.1
 
     if (midFreqValue > 50) {
-        shape1.style.opacity = '0.9'
-        shape3.style.opacity = '0.9'
+        shape1.style.filter = 'opacity(90%)'
+        shape3.style.filter = 'opacity(90%)'
     } else {
-        shape1.style.opacity = `${map(midFreqValue, [0,100], [0,2])}`
-        shape3.style.opacity = `${map(midFreqValue, [0,100], [0,2])}`
+        shape1.style.filter = `opacity(${midFreqValue}%) saturate(${midFreqValue}%)`
+        shape3.style.filter = `opacity(${midFreqValue}%) saturate(${midFreqValue}%)`
     }
 
     if (midHighFreqValue > 50) {
-        shape2.style.opacity = '0.9'
-        shape5.style.opacity = '0.9'
+        shape2.style.filter = 'opacity(90%)'
+        shape5.style.filter = 'opacity(90%)'
     } else {
-        shape2.style.opacity = `${map(midHighFreqValue, [0,100], [0,2])}`
-        shape5.style.opacity = `${map(midHighFreqValue, [0,100], [0,2])}`
+        shape2.style.filter = `opacity(${midHighFreqValue}%) saturate(${midHighFreqValue}%)`
+        shape5.style.filter = `opacity(${midHighFreqValue}%) saturate(${midHighFreqValue}%)`
     }
 
     if (highFreqValue > 50) {
-        shape4.style.opacity = '0.9'
+        shape4.style.filter = 'opacity(90%)'
     } else {
-        shape4.style.opacity = `${map(highFreqValue, [0,100], [0,2])}`
+        shape4.style.filter = `opacity(${highFreqValue}%) invert(${highFreqValue}%)`
     }
 
     // when there's low frequencies thumps trigger shape moves
