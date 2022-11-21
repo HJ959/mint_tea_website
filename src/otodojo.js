@@ -63,8 +63,8 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
         blurValue = 0
     }
     if (!firstShapeMove) {
-        shape.style.transform = `translateX(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenWidth)}px) 
-                                 translateY(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0, screenHeight)}px)
+        shape.style.transform = `translateX(${minusOrNotArray[getRndInt(0,1)]}${(getRndInt(screenWidth * 0.25, screenWidth * 0.7))}px) 
+                                 translateY(${minusOrNotArray[getRndInt(0,1)]}${(getRndInt(screenHeight * 0.25, screenHeight * 0.7))}px)
                                  rotate(${getRndInt(0, screenWidth * 0.77)}deg)
                                  scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,3])})`
         shape.style.filter = `blur(0px)
@@ -115,7 +115,10 @@ function step(timestamp) {
         shape3.style.filter = 'opacity(90%)'
     } else {
         shape1.style.filter = `opacity(${midFreqValue}%) saturate(${midFreqValue}%)`
+        shape1.style.transition = `${(midFreqValue * getRndInt(0,25)) * 0.01}s`
         shape3.style.filter = `opacity(${midFreqValue}%) saturate(${midFreqValue}%)`
+        shape3.style.transition = `${(midFreqValue * getRndInt(0,25)) * 0.01}s`
+        
     }
 
     if (midHighFreqValue > 50) {
@@ -123,13 +126,16 @@ function step(timestamp) {
         shape5.style.filter = 'opacity(90%)'
     } else {
         shape2.style.filter = `opacity(${midHighFreqValue}%) saturate(${midHighFreqValue}%)`
+        shape2.style.transition = `${(midHighFreqValue * getRndInt(0,25)) * 0.01}s`
         shape5.style.filter = `opacity(${midHighFreqValue}%) saturate(${midHighFreqValue}%)`
+        shape5.style.transition = `${(midHighFreqValue * getRndInt(0,25)) * 0.01}s`
     }
 
     if (highFreqValue > 50) {
         shape4.style.filter = 'opacity(90%)'
     } else {
         shape4.style.filter = `opacity(${highFreqValue}%) invert(${highFreqValue}%)`
+        shape4.style.transition = `${(highFreqValue * getRndInt(0,25)) * 0.01}s`
     }
 
     // when there's low frequencies thumps trigger shape moves
