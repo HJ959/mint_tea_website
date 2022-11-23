@@ -7,19 +7,19 @@ let mouseX, mouseY = 0
 let mouseDown = false
 document.addEventListener('pointerdown', logKeyDown)
 function logKeyDown(e) {
-  mouseX = e.clientX
-  mouseY = e.clientY
   mouseDown = true
-  console.log(mouseDown)
 }
 document.addEventListener('pointerup', logKeyUp)
 function logKeyUp(e) {
-  mouseX = e.clientX
-  mouseY = e.clientY
   mouseDown = false
-  console.log(mouseDown)
 }
-
+document.addEventListener('pointermove', logKey)
+function logKey(e) {
+  mouseX = e.clientX - 100
+  mouseY = e.clientY - 100
+  if (mouseX < 0) mouseX = 0
+  if (mouseY < 0) mouseY = 0
+}
 // random int function
 function getRndInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
