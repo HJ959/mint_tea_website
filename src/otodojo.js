@@ -2,12 +2,22 @@ import './main.css'
 import './otodojo.css'
 import * as AUDIO from './otodojoAudio.js'
 
-// track mouse movements
-document.addEventListener('pointermove', logKey)
-let mouseX, mouseY
-function logKey(e) {
+// track mouse clicks
+let mouseX, mouseY = 0
+let mouseDown = false
+document.addEventListener('pointerdown', logKeyDown)
+function logKeyDown(e) {
   mouseX = e.clientX
   mouseY = e.clientY
+  mouseDown = true
+  console.log(mouseDown)
+}
+document.addEventListener('pointerup', logKeyUp)
+function logKeyUp(e) {
+  mouseX = e.clientX
+  mouseY = e.clientY
+  mouseDown = false
+  console.log(mouseDown)
 }
 
 // random int function
@@ -45,6 +55,7 @@ let midHighFreqValue = 0
 let highFreqValue = 0
 let blurValue = 120
 const minusOrNotArray = ['', '-']
+const yxzArray = ['Y', 'X', 'Z']
 let firstShapeMove = true
 
 function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
@@ -54,19 +65,23 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
     let screenWidth = window.innerWidth
     let screenHeight = window.innerHeight
-    if (firstShapeMove) {
-        shape.style.transform = `translateX(${screenWidth * 0.5}px) 
-                                 translateY(${screenHeight * 0.5}}px)
-                                 rotate(${getRndInt(0, screenWidth * 0.77)}deg)
-                                 scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,3])})`
-        shape.style.filter = `blur(0px)`
+    let quarterScreenWidth = screenWidth * 0.25
+    let quarterScreenHeight = screenHeight * 0.25
+
+    if (mouseDown === true) {
+        shape.style.transform = `rotate(0deg)
+                                 translate3d(${mouseX}px, ${mouseY}px, ${mouseX / mouseY}px)
+                                 perspective(${mouseX / mouseY}px)
+                                `
+        shape.style.filter = `blur(0px)
+                              drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
         blurValue = 0
     }
-    if (!firstShapeMove) {
-        shape.style.transform = `translateX(${minusOrNotArray[getRndInt(0,1)]}${(getRndInt(screenWidth * 0.25, screenWidth * 0.7))}px) 
-                                 translateY(${minusOrNotArray[getRndInt(0,1)]}${(getRndInt(screenHeight * 0.25, screenHeight * 0.7))}px)
-                                 rotate(${getRndInt(0, screenWidth * 0.77)}deg)
-                                 scale(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,3])})`
+    if (mouseDown === false) {
+        shape.style.transform = `rotate${yxzArray[getRndInt(0,2)]}(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,720])}deg)
+                                 translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(quarterScreenWidth, screenWidth)}px, ${minusOrNotArray[getRndInt(0,1)]}${getRndInt(quarterScreenHeight, screenHeight)}px, 0px)
+                                 perspective(100px)
+                                `
         shape.style.filter = `blur(0px)
                               drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
         blurValue = 0
@@ -115,9 +130,9 @@ function step(timestamp) {
         shape3.style.filter = 'opacity(90%)'
     } else {
         shape1.style.filter = `opacity(${midFreqValue}%) saturate(${midFreqValue}%)`
-        shape1.style.transition = `${(midFreqValue * getRndInt(0,25)) * 0.01}s`
+        shape1.style.transition = `${(midFreqValue * getRndInt(0,15)) * 0.01}s`
         shape3.style.filter = `opacity(${midFreqValue}%) saturate(${midFreqValue}%)`
-        shape3.style.transition = `${(midFreqValue * getRndInt(0,25)) * 0.01}s`
+        shape3.style.transition = `${(midFreqValue * getRndInt(0,15)) * 0.01}s`
         
     }
 
@@ -126,16 +141,16 @@ function step(timestamp) {
         shape5.style.filter = 'opacity(90%)'
     } else {
         shape2.style.filter = `opacity(${midHighFreqValue}%) saturate(${midHighFreqValue}%)`
-        shape2.style.transition = `${(midHighFreqValue * getRndInt(0,25)) * 0.01}s`
+        shape2.style.transition = `${(midHighFreqValue * getRndInt(0,15)) * 0.01}s`
         shape5.style.filter = `opacity(${midHighFreqValue}%) saturate(${midHighFreqValue}%)`
-        shape5.style.transition = `${(midHighFreqValue * getRndInt(0,25)) * 0.01}s`
+        shape5.style.transition = `${(midHighFreqValue * getRndInt(0,15)) * 0.01}s`
     }
 
     if (highFreqValue > 50) {
         shape4.style.filter = 'opacity(90%)'
     } else {
         shape4.style.filter = `opacity(${highFreqValue}%) invert(${highFreqValue}%)`
-        shape4.style.transition = `${(highFreqValue * getRndInt(0,25)) * 0.01}s`
+        shape4.style.transition = `${(highFreqValue * getRndInt(0,15)) * 0.01}s`
     }
 
     // when there's low frequencies thumps trigger shape moves

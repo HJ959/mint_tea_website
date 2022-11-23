@@ -9,17 +9,18 @@
 <script defer src="otodojo.js"></script></head>
 
 <body>
-    <button id="playPause" data-playing="false" role="switch" aria-checked="false">
-        <span>Play/Pause</span>
-    </button>
     <main class="container">
+        <nav class="hud">
+            <button id="playPause" data-playing="false" role="switch" aria-checked="false">
+                <span>Play/Pause</span>
+            </button>
+        </nav>
         <img class="no-select" onclick="shuffleShape(this)" id="shape1" src="media/shapes/shape1.png" alt="shape1">
         <img class="no-select" onclick="shuffleShape(this)" id="shape2" src="media/shapes/shape2.png" alt="shape2">
         <img class="no-select" onclick="shuffleShape(this)" id="shape3" src="media/shapes/shape3.png" alt="shape3">
         <img class="no-select" onclick="shuffleShape(this)" id="shape4" src="media/shapes/shape4.png" alt="shape4">
         <img class="no-select" onclick="shuffleShape(this)" id="shape5" src="media/shapes/shape5.png" alt="shape5">
-        <audio id="oneWayOrAnother"
-            src="media/Otodojo_Tracks/Otodojo - Parsing a Path (premaster).mp3"></audio>
+        <audio id="oneWayOrAnother" src="media/Otodojo_Tracks/Otodojo - Parsing a Path (premaster).mp3"></audio>
     </main>
 </body>
 
