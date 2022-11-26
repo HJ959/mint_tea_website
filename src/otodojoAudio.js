@@ -31,22 +31,34 @@ track.connect(analyser).connect(audioContext.destination)
 // Select our play button
 const playButton = document.getElementById("playPause")
 
+function togglePlay() {
+    // Check if context is in suspended state (autoplay policy)
+    if (audioContext.state === "suspended") {
+        audioContext.resume()
+    }
+
+    // Play or pause track depending on state
+    if (playButton.dataset.playing === "false") {
+        audioElement.play()
+        playButton.dataset.playing = "true"
+    } else if (playButton.dataset.playing === "true") {
+        audioElement.pause()
+        playButton.dataset.playing = "false"
+    }
+}
+
+// event = keyup or keydown
+document.addEventListener('keyup', event => {
+    if (event.code === 'Space') {
+        // play pause
+        togglePlay()
+    }
+})
+
 playButton.addEventListener(
     "click",
     () => {
-        // Check if context is in suspended state (autoplay policy)
-        if (audioContext.state === "suspended") {
-            audioContext.resume()
-        }
-
-        // Play or pause track depending on state
-        if (playButton.dataset.playing === "false") {
-            audioElement.play()
-            playButton.dataset.playing = "true"
-        } else if (playButton.dataset.playing === "true") {
-            audioElement.pause()
-            playButton.dataset.playing = "false"
-        }
+        togglePlay()
     },
     false
 )
@@ -54,7 +66,7 @@ playButton.addEventListener(
 audioElement.addEventListener(
     "ended",
     () => {
-      playButton.dataset.playing = "false"
+        playButton.dataset.playing = "false"
     },
     false
-  )
+)

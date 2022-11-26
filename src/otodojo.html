@@ -8,20 +8,36 @@
     <title>Otodojo</title>
 </head>
 
-<body>
-    <main class="container" draggable="false">
-        <nav class="hud" draggable="false">
+<body draggable="false">
+    <div class="container" draggable="false">
+        <div id="mainScreen" class="screen border">
+            <img class="noselect" onclick="shuffleShape(this)" id="shape1" src="media/shapes/shape1.png"
+                draggable="false" alt="shape1" oncontextmenu="return false;" ;>
+            <img class="noselect" onclick="shuffleShape(this)" id="shape2" src="media/shapes/shape2.png"
+                draggable="false" alt="shape2" oncontextmenu="return false;" ;>
+            <img class="noselect" onclick="shuffleShape(this)" id="shape3" src="media/shapes/shape3.png"
+                draggable="false" alt="shape3" oncontextmenu="return false;" ;>
+            <img class="noselect" onclick="shuffleShape(this)" id="shape4" src="media/shapes/shape4.png"
+                draggable="false" alt="shape4" oncontextmenu="return false;" ;>
+            <img class="noselect" onclick="shuffleShape(this)" id="shape5" src="media/shapes/shape5.png"
+                draggable="false" alt="shape5" oncontextmenu="return false;" ;>
+            <audio draggable="false" id="oneWayOrAnother"
+                src="media/Otodojo_Tracks/Otodojo - Parsing a Path (premaster).mp3"></audio>
+        </div>
+
+        <div class="textDisplay"></div>
+
+        <div class="back"></div>
+
+        <div class="play">
             <button id="playPause" data-playing="false" role="switch" aria-checked="false">
                 <span>Play/Pause</span>
             </button>
-        </nav>
-        <img class="noselect" onclick="shuffleShape(this)" id="shape1" src="media/shapes/shape1.png" draggable="false" alt="shape1">
-        <img class="noselect" onclick="shuffleShape(this)" id="shape2" src="media/shapes/shape2.png" draggable="false" alt="shape2">
-        <img class="noselect" onclick="shuffleShape(this)" id="shape3" src="media/shapes/shape3.png" draggable="false" alt="shape3">
-        <img class="noselect" onclick="shuffleShape(this)" id="shape4" src="media/shapes/shape4.png" draggable="false" alt="shape4">
-        <img class="noselect" onclick="shuffleShape(this)" id="shape5" src="media/shapes/shape5.png" draggable="false" alt="shape5">
-        <audio draggable="false" id="oneWayOrAnother" src="media/Otodojo_Tracks/Otodojo - Parsing a Path (premaster).mp3"></audio>
-    </main>
+        </div>
+
+        <div class="forward"></div>
+
+    </div>
 </body>
 
 </html>
