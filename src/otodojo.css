@@ -4,52 +4,49 @@ body {
     height: 100%;
     /* background-color: rgb(15, 15, 15); */
     background: black;
-    background: -moz-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
-    background: -webkit-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
-    background: radial-gradient(ellipse at center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
+    background: -moz-radial-gradient(center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
+    background: -webkit-radial-gradient(center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
+    background: radial-gradient(ellipse at center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
 }
 
 .border {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
     background: black;
-    -webkit-clip-path: inset(2% 2% 15% 2%);
-    clip-path: inset(2% 2% 15% 2%);
+    background: -moz-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
+    background: -webkit-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
+    background: radial-gradient(ellipse at center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
+    -webkit-clip-path: inset(5% 5% 1% 5%);
+    clip-path: inset(5% 5% 1% 5%);
     overflow: hidden;
     z-index: 5;
 }
 
-image {
-    position: absolute;
-    left: 50%;
-    transform-style: preserve-3d;
+p {
+    color: white;
 }
 
 .container {
-    justify-items: center;
-  align-items: center;
     width: 100%;
     height: 100%;
+    justify-items: center;
+    align-items: center;
     display: grid;
-    grid-auto-columns: 1fr;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 13fr 1fr 3fr;
+    grid-template-rows: 40fr 1fr 5fr;
     gap: 0px 0px;
     grid-template-areas:
         "screen screen screen"
-        "textDisplay textDisplay textDisplay"
+        ". textDisplay ."
         "back play forward";
 }
 
 .back {
     grid-area: back;
+    z-index: 10;
 }
 
 .forward {
     grid-area: forward;
+    z-index: 10;
 }
 
 .play {
@@ -59,10 +56,27 @@ image {
 
 .textDisplay {
     grid-area: textDisplay;
+    z-index: 10;
 }
 
 .screen {
     grid-area: screen;
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    background: rgb(50, 50, 50);
+    border: 2px solid #FFFFFF;
+}
+
+#shape1, #shape2, #shape3, #shape4, #shape5 {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 30%;
+    transform-style: preserve-3d;
 }
 
 /* ------------------ Useful ------------- */

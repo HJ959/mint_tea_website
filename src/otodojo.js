@@ -66,31 +66,22 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     // this function moves and randomizes some 
     // of the parameters for each shape
     var rect = mainScreenElement.getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left);
-
+    var rectLeftQuarter = rect.right * 0.25
     const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
-    // let screenWidth = mainScreenElement.innerWidth
-    // let screenHeight = mainScreenElement.innerHeight
-    // let quarterScreenWidth = screenWidth * 0.25
-    // let quarterScreenHeight = screenHeight * 0.25
 
     if (mouseDown === true) {
         shape.style.transform = `rotate(0deg)
-                                 translate3d(${mouseX}px, ${mouseY}px, ${mouseX / mouseY}px)
-                                 perspective(${mouseX / mouseY}px)
-                                `
+                                 scale(1)
+                                 translate3d(${mouseX}px,${mouseY}px,0px)`
         shape.style.filter = `blur(0px)
                               drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
         blurValue = 0
     }
     if (mouseDown === false) {
-        // shape.style.transform = `rotate${yxzArray[getRndInt(0,2)]}(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,720])}deg)
-        //                          translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(quarterScreenWidth, screenWidth)}px, ${minusOrNotArray[getRndInt(0,1)]}${getRndInt(quarterScreenHeight, screenHeight)}px, 0px)
-        //                          perspective(100px)
-        //                         `
         shape.style.transform = `rotate${yxzArray[getRndInt(0,2)]}(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,720])}deg)
-                                translate3d(${getRndInt(rect.left,rect.right)}px,${getRndInt(rect.bottom,rect.top)}px, 0px)
-                                perspective(100px)
+                                perspective(${getRndInt(0,100)}px)
+                                translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, -${getRndInt(0,100)}px)
+                                scale(${midFreqValue*0.05})
                                `
         shape.style.filter = `blur(0px)
                               drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
