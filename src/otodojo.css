@@ -9,6 +9,8 @@ body {
     background: radial-gradient(ellipse at center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
 }
 
+#loadOverlay{display: none;}
+
 .border {
     background: black;
     background: -moz-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
