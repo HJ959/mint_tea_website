@@ -8,10 +8,17 @@ export const AudioContext = window.AudioContext || window.webkitAudioContext
 export const audioContext = new AudioContext()
 
 // get the audio element
-const audioElement = document.getElementById("oneWayOrAnother")
+const audioElement = document.getElementById("parsingAPath")
 
 // pass it into the audio context
-export const track = audioContext.createMediaElementSource(audioElement)
+export let track = audioContext.createMediaElementSource(audioElement)
+
+// function nextTrack() {
+//     track.close()
+//     audioElement.setAttribute('src', 'media/Otodojo_Tracks/Otodojo & Jason ddb - One Way Or Another (premaster).mp3')
+//     track = audioContext.createMediaElementSource(audioElement)
+// }
+// window.nextTrack = nextTrack
 
 // create the analyser node
 export const analyser = new AnalyserNode(audioContext)

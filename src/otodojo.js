@@ -61,13 +61,14 @@ const minusOrNotArray = ['', '-']
 const yxzArray = ['Y', 'X', 'Z']
 let firstShapeMove = true
 const mainScreenElement = document.getElementById('mainScreen')
+let rect, rectLeftQuarter = 0
+const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
 
 function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     // this function moves and randomizes some 
     // of the parameters for each shape
-    var rect = mainScreenElement.getBoundingClientRect();
-    var rectLeftQuarter = rect.right * 0.25
-    const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
+    rect = mainScreenElement.getBoundingClientRect();
+    rectLeftQuarter = rect.right * 0.25
 
     if (mouseDown === true) {
         shape.style.transform = `rotate(0deg)
@@ -80,7 +81,7 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     if (mouseDown === false) {
         shape.style.transform = `rotate${yxzArray[getRndInt(0,2)]}(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,720])}deg)
                                 perspective(${getRndInt(0,100)}px)
-                                translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, -${getRndInt(0,100)}px)
+                                translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, ${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}px)
                                 scale(${midFreqValue*0.05})
                                `
         shape.style.filter = `blur(0px)
@@ -108,8 +109,6 @@ function step(timestamp) {
         start = timestamp
     }
 
-    const elapsed = timestamp - start
-
     AUDIO.analyser.getByteFrequencyData(AUDIO.dataArray)
 
     // work out the average value per chunk of audio data 
@@ -117,7 +116,6 @@ function step(timestamp) {
     lowFreqValue = AUDIO.dataArray.slice(3, 6).reduce((partialSum, a) => partialSum + a, 0) / 4
     midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
     midHighFreqValue = AUDIO.dataArray.slice(500, 600).reduce((partialSum, a) => partialSum + a, 0) / 200
-    highFreqValue = AUDIO.dataArray.slice(700, 1200).reduce((partialSum, a) => partialSum + a, 0) / 600
 
     // slowly blur to a set value when low freqencies not being triggered
     for (var i = 0; i < shapes.length; i++) {
@@ -131,9 +129,9 @@ function step(timestamp) {
         shape3.style.filter = 'opacity(90%)'
     } else {
         shape1.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape1.style.transition = `${(lowFreqValue * getRndInt(0,10)) * 0.01}s`
+        shape1.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
         shape3.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape3.style.transition = `${(lowFreqValue * getRndInt(0,10)) * 0.01}s`
+        shape3.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
 
     }
 
@@ -142,16 +140,16 @@ function step(timestamp) {
         shape5.style.filter = 'opacity(90%)'
     } else {
         shape2.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape2.style.transition = `${(lowFreqValue * getRndInt(0,10)) * 0.01}s`
+        shape2.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
         shape5.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape5.style.transition = `${(lowFreqValue * getRndInt(0,10)) * 0.01}s`
+        shape5.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
     }
 
     if (lowFreqValue > 150) {
         shape4.style.filter = 'opacity(90%)'
     } else {
         shape4.style.filter = `opacity(${lowFreqValue}%)`
-        shape4.style.transition = `${(lowFreqValue * getRndInt(0,10)) * 0.01}s`
+        shape4.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
     }
 
     // when there's low frequencies thumps trigger shape moves
@@ -181,7 +179,6 @@ function step(timestamp) {
     counter4++
     previousTimeStamp = timestamp
     window.requestAnimationFrame(step)
-
 }
 
 window.requestAnimationFrame(step)

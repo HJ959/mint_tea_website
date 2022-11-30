@@ -4,20 +4,20 @@ body {
     height: 100%;
     /* background-color: rgb(15, 15, 15); */
     background: black;
-    background: -moz-radial-gradient(center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
-    background: -webkit-radial-gradient(center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
-    background: radial-gradient(ellipse at center, black 0%, rgb(30, 30, 30) 50%, rgb(35, 35, 35) 100%);
+    background: -moz-radial-gradient(center, rgb(65,70,75) 0%, rgb(50,55,60) 50%, rgb(0, 0, 0) 100%);
+    background: -webkit-radial-gradient(center, rgb(65,70,75) 0%, rgb(50,55,60) 50%, rgb(0, 0, 0) 100%);
+    background: radial-gradient(ellipse at center, rgb(65,70,75) 0%, rgb(50,55,60) 50%, rgb(0, 0, 0) 100%);
 }
 
 #loadOverlay{display: none;}
 
 .border {
-    background: black;
-    background: -moz-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
-    background: -webkit-radial-gradient(center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
-    background: radial-gradient(ellipse at center, black 0%, rgb(10, 10, 10) 50%, rgb(25, 25, 25) 100%);
-    -webkit-clip-path: inset(5% 5% 1% 5%);
-    clip-path: inset(5% 5% 1% 5%);
+    background: white;
+    background: -moz-radial-gradient(center, rgb(0,0,0) 0%, rgb(50,55,60) 50%, rgb(65, 70, 75) 100%);
+    background: -webkit-radial-gradient(center, rgb(0,0,0) 0%, rgb(50,55,60) 50%, rgb(65, 70, 75) 100%);
+    background: radial-gradient(ellipse at center, rgb(0,0,0) 0%, rgb(50,55,60) 50%, rgb(65, 70, 75) 100%);
+    -webkit-clip-path: inset(1% 1% 1% 1%);
+    clip-path: inset(1% 1% 1% 1%);
     overflow: hidden;
     z-index: 5;
 }
@@ -59,6 +59,17 @@ p {
 .textDisplay {
     grid-area: textDisplay;
     z-index: 10;
+    animation: slide-left 10s linear infinite;
+    overflow: hidden;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translate(50%, 0);
+    }
+    100% {
+        transform: translate(-50%, 0);
+    }
 }
 
 .screen {
@@ -77,7 +88,6 @@ button {
     z-index: 10;
     top: 0;
     left: 0;
-    right: 30%;
     transform-style: preserve-3d;
 }
 
