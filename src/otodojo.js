@@ -76,17 +76,18 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
                                  translate3d(${mouseX}px,${mouseY}px,0px)`
         shape.style.filter = `blur(0px)
                               drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
-        blurValue = 0
+        // blurValue = 0
     }
     if (mouseDown === false) {
+        var zAxisValue = `${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}`
         shape.style.transform = `rotate${yxzArray[getRndInt(0,2)]}(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,720])}deg)
                                 perspective(${getRndInt(0,100)}px)
-                                translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, ${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}px)
+                                translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, ${zAxisValue}px)
                                 scale(${midFreqValue*0.05})
                                `
-        shape.style.filter = `blur(0px)
+        shape.style.filter = `blur(${Math.abs(zAxisValue)}px)
                               drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
-        blurValue = 0
+        // blurValue = 0
     }
 }
 
@@ -117,12 +118,12 @@ function step(timestamp) {
     midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
     midHighFreqValue = AUDIO.dataArray.slice(500, 600).reduce((partialSum, a) => partialSum + a, 0) / 200
 
-    // slowly blur to a set value when low freqencies not being triggered
-    for (var i = 0; i < shapes.length; i++) {
-        shapes[i].style.filter = `blur(${String(blurValue)}px)`
-    }
-    if (blurValue === 0) blurValue = 1
-    if (blurValue < 500) blurValue = blurValue * 1.1
+    // // slowly blur to a set value when low freqencies not being triggered
+    // for (var i = 0; i < shapes.length; i++) {
+    //     shapes[i].style.filter = `blur(${String(blurValue)}px)`
+    // }
+    // if (blurValue === 0) blurValue = 1
+    // if (blurValue < 500) blurValue = blurValue * 1.1
 
     if (lowFreqValue > 150) {
         shape1.style.filter = 'opacity(90%)'
@@ -172,6 +173,20 @@ function step(timestamp) {
             counter4 = 0
         }
     }
+
+    /*
+    TO DO
+
+    NEED TO IMPLEMENET SOMETHING THAT SAVES ALL THE CHANGES TO THE STYLES ON THE IMAGES
+    AND THEN APPLIES AT THE END OF EACH LOOP IF THERES A CHANGE
+
+    EACH ATTRIBUTE blur(30px) FOR EXAMPLE
+
+    THEN SAVE THE ENTIRE COMBINATION AS A STRING 
+
+    IF DIFFERENT TO LAST STRING
+        UPDATE
+    */
 
     counter1++
     counter2++
