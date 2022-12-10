@@ -80,7 +80,7 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
     }
     if (mouseDown === false) {
         var zAxisValue = `${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}`
-        shape.style.transform = `rotate${yxzArray[getRndInt(0,2)]}(${map(freqValues[getRndInt(0,freqValues.length)], [0,255], [0,720])}deg)
+        shape.style.transform = `rotate(${getRndInt(0,360)}deg)
                                 perspective(${getRndInt(0,100)}px)
                                 translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, ${zAxisValue}px)
                                 scale(${midFreqValue*0.05})
