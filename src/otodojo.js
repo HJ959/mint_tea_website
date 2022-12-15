@@ -55,16 +55,15 @@ shuffleShape(shape5)
 let lowFreqValue = 0
 let midFreqValue = 0
 let midHighFreqValue = 0
-let highFreqValue = 0
-let blurValue = 120
+
 const minusOrNotArray = ['', '-']
 const yxzArray = ['Y', 'X', 'Z']
-let firstShapeMove = true
+let zAxisValue = 0
 const mainScreenElement = document.getElementById('mainScreen')
 let rect, rectLeftQuarter = 0
-const freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
+let freqValues = [lowFreqValue, midFreqValue, midHighFreqValue]
 
-function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
+function shapeMover(shape) {
     // this function moves and randomizes some 
     // of the parameters for each shape
     rect = mainScreenElement.getBoundingClientRect();
@@ -79,24 +78,29 @@ function shapeMover(shape, lowFreqValue, midFreqValue, midHighFreqValue) {
         // blurValue = 0
     }
     if (mouseDown === false) {
-        var zAxisValue = `${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}`
+        zAxisValue = `${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}`
         shape.style.transform = `rotate(${getRndInt(0,360)}deg)
                                 perspective(${getRndInt(0,100)}px)
                                 translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, ${zAxisValue}px)
                                 scale(${midFreqValue*0.05})
                                `
-        shape.style.filter = `blur(${Math.abs(zAxisValue)}px)
-                              drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)`
+        setShapeFilter(shape)
         // blurValue = 0
     }
 }
 
-shapeMover(shape1, lowFreqValue, midFreqValue, midHighFreqValue)
-shapeMover(shape2, lowFreqValue, midFreqValue, midHighFreqValue)
-shapeMover(shape3, lowFreqValue, midFreqValue, midHighFreqValue)
-shapeMover(shape4, lowFreqValue, midFreqValue, midHighFreqValue)
-shapeMover(shape5, lowFreqValue, midFreqValue, midHighFreqValue)
-firstShapeMove = false
+function setShapeFilter(shape) {
+    shape.style.filter = `blur(${Math.abs(zAxisValue)}px)
+                              drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)
+                              opacity(${lowFreqValue}%) 
+                              saturate(${lowFreqValue}%)`
+}
+
+shapeMover(shape1)
+shapeMover(shape2)
+shapeMover(shape3)
+shapeMover(shape4)
+shapeMover(shape5)
 
 let start, previousTimeStamp
 let counter1 = 0,
@@ -110,83 +114,40 @@ function step(timestamp) {
         start = timestamp
     }
 
-    AUDIO.analyser.getByteFrequencyData(AUDIO.dataArray)
-
-    // work out the average value per chunk of audio data 
-    // it's split into a rough freuqncy range
-    lowFreqValue = AUDIO.dataArray.slice(3, 6).reduce((partialSum, a) => partialSum + a, 0) / 4
-    midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
-    midHighFreqValue = AUDIO.dataArray.slice(500, 600).reduce((partialSum, a) => partialSum + a, 0) / 200
-
-    // // slowly blur to a set value when low freqencies not being triggered
-    // for (var i = 0; i < shapes.length; i++) {
-    //     shapes[i].style.filter = `blur(${String(blurValue)}px)`
-    // }
-    // if (blurValue === 0) blurValue = 1
-    // if (blurValue < 500) blurValue = blurValue * 1.1
-
-    if (lowFreqValue > 150) {
-        shape1.style.filter = 'opacity(90%)'
-        shape3.style.filter = 'opacity(90%)'
-    } else {
-        shape1.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape1.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
-        shape3.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape3.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
-
-    }
-
-    if (lowFreqValue > 150) {
-        shape2.style.filter = 'opacity(90%)'
-        shape5.style.filter = 'opacity(90%)'
-    } else {
-        shape2.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape2.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
-        shape5.style.filter = `opacity(${lowFreqValue}%) saturate(${lowFreqValue}%)`
-        shape5.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
-    }
-
-    if (lowFreqValue > 150) {
-        shape4.style.filter = 'opacity(90%)'
-    } else {
-        shape4.style.filter = `opacity(${lowFreqValue}%)`
-        shape4.style.transition = `${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
-    }
-
-    // when there's low frequencies thumps trigger shape moves
+    // make sure some time has passed help reduce processing
     if (timestamp != previousTimeStamp) {
+        // work out the average value per chunk of audio data 
+        // it's split into a rough freuqncy range
+        AUDIO.analyser.getByteFrequencyData(AUDIO.dataArray)
+        
+        lowFreqValue = AUDIO.dataArray.slice(3, 6).reduce((partialSum, a) => partialSum + a, 0) / 4
+        midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
+        midHighFreqValue = AUDIO.dataArray.slice(500, 600).reduce((partialSum, a) => partialSum + a, 0) / 200
+        
+        for (var i = 0; i < shapes.length; i++) {
+            setShapeFilter(shapes[i])
+            shapes[i].style.transition = `all ${(lowFreqValue * getRndInt(0,7)) * 0.01}s`
+        }
+        
+        // when there's low frequencies thumps trigger shape moves
         if (lowFreqValue > 10 && counter1 > 20) {
-            shapeMover(shape1, lowFreqValue, midFreqValue, midHighFreqValue)
+            shapeMover(shape1)
             counter1 = 0
         }
-        if (midHighFreqValue > 20 && counter2 > 30) {
-            shapeMover(shape2, lowFreqValue, midFreqValue, midHighFreqValue)
+        if (lowFreqValue > 20 && counter2 > 30) {
+            shapeMover(shape2)
             counter2 = 0
         }
         if (lowFreqValue > 30 && counter3 > 10) {
-            shapeMover(shape3, lowFreqValue, midFreqValue, midHighFreqValue)
+            shapeMover(shape3)
             counter3 = 0
         }
         if (lowFreqValue > 30 && counter4 > 15) {
-            shapeMover(shape4, lowFreqValue, midFreqValue, midHighFreqValue)
-            shapeMover(shape5, lowFreqValue, midFreqValue, midHighFreqValue)
+            shapeMover(shape4)
+            shapeMover(shape5)
             counter4 = 0
         }
     }
-
-    /*
-    TO DO
-
-    NEED TO IMPLEMENET SOMETHING THAT SAVES ALL THE CHANGES TO THE STYLES ON THE IMAGES
-    AND THEN APPLIES AT THE END OF EACH LOOP IF THERES A CHANGE
-
-    EACH ATTRIBUTE blur(30px) FOR EXAMPLE
-
-    THEN SAVE THE ENTIRE COMBINATION AS A STRING 
-
-    IF DIFFERENT TO LAST STRING
-        UPDATE
-    */
 
     counter1++
     counter2++
