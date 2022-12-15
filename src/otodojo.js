@@ -90,7 +90,7 @@ function shapeMover(shape) {
 }
 
 function setShapeFilter(shape) {
-    shape.style.filter = `blur(${Math.abs(zAxisValue)}px)
+    shape.style.filter = `blur(${Math.abs(zAxisValue*0.5)}px)
                               drop-shadow(${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px ${String(freqValues[getRndInt(0,freqValues.length)])}px white)
                               opacity(${lowFreqValue}%) 
                               saturate(${lowFreqValue}%)`
