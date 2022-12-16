@@ -5,7 +5,9 @@ body {
     background: black;
 }
 
-#loadOverlay{display: none;}
+#loadOverlay {
+    display: none;
+}
 
 .border {
     background: black;
@@ -71,6 +73,7 @@ p {
     0% {
         transform: translate(50%, 0);
     }
+
     100% {
         transform: translate(-50%, 0);
     }
@@ -87,12 +90,18 @@ button {
     border: 2px solid #FFFFFF;
 }
 
-#shape1, #shape2, #shape3, #shape4, #shape5 {
+#shape1,
+#shape2,
+#shape3,
+#shape4,
+#shape5 {
     position: absolute;
     z-index: 10;
     top: 0;
     left: 0;
-    transform-style: preserve-3d;
+    transition: 0.1s;
+    transition-property: transform;
+    filter: opacity(0);
 }
 
 /* ------------------ Useful ------------- */
