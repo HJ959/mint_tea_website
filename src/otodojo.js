@@ -7,28 +7,27 @@ let rect, rectLeftQuarter = 0
 const mainScreenElement = document.getElementById('mainScreen')
 rect = mainScreenElement.getBoundingClientRect()
 rectLeftQuarter = rect.right * 0.25
-
+console.log(rect, rectLeftQuarter)
 function updateImageZone() {
     rect = mainScreenElement.getBoundingClientRect()
     rectLeftQuarter = rect.right * 0.25
-    console.log(rect)
 }
-document.addEventListener("resize", updateImageZone)
+window.addEventListener("resize", updateImageZone)
 
 // track mouse clicks
 let mouseX, mouseY = 0
 let mouseDown = false
-document.addEventListener('pointerdown', logKeyDown)
+window.addEventListener('pointerdown', logKeyDown)
 
 function logKeyDown(e) {
     mouseDown = true
 }
-document.addEventListener('pointerup', logKeyUp)
+window.addEventListener('pointerup', logKeyUp)
 
 function logKeyUp(e) {
     mouseDown = false
 }
-document.addEventListener('pointermove', logKey)
+window.addEventListener('pointermove', logKey)
 
 function logKey(e) {
     mouseX = e.clientX - 100
@@ -70,7 +69,13 @@ let zAxisValue = 0
 
 let start, previousTimeStamp
 let counter1 = 0
-let previousLowFreqValue = 0
+let freqValue0to100 = 0
+let freqValue200to400 = 0
+let freqValue600to800 = 0
+let freqValue1000to1200 = 0
+let freqValue2000to5000 = 0
+let freqValues = [freqValue0to100, freqValue200to400, freqValue600to800, freqValue1000to1200, freqValue2000to5000]
+let highestValue = 25
 // main animation function
 function step(timestamp) {
     if (start === undefined) {
@@ -83,42 +88,54 @@ function step(timestamp) {
         // it's split into a rough freuqncy range
         AUDIO.analyser.getByteFrequencyData(AUDIO.dataArray)
 
-        var lowFreqValue = AUDIO.dataArray.slice(3, 6).reduce((partialSum, a) => partialSum + a, 0) / 4
-        var midFreqValue = AUDIO.dataArray.slice(200, 400).reduce((partialSum, a) => partialSum + a, 0) / 200
+        // var rms = 0
+        // for (var i = 0; i < AUDIO.dataArray.length; i++) {
+        //     rms += AUDIO.dataArray[i] * AUDIO.dataArray[i]
+        // }
+        // rms /= AUDIO.dataArray.length
+        // freqValue0to100 = map(Math.sqrt(rms), [0,highestValue], [0,255])
 
-        if (lowFreqValue > previousLowFreqValue) previousLowFreqValue = lowFreqValue
-        
-        for (var i = 0; i < shapes.length; i++) {
-            shapes[i].style.filter = `drop-shadow(${lowFreqValue}px ${lowFreqValue}px ${midFreqValue}px white)
-                                      opacity(${lowFreqValue}%) 
-                                      saturate(${lowFreqValue}%)
-                                      blur(${100-map(lowFreqValue, [0,previousLowFreqValue], [0,100])}px)`
+        if (freqValue0to100 > highestValue) {
+            highestValue = freqValue0to100
         }
-
-        // when there's low frequencies thumps trigger shape moves
-        if (counter1 > 15 && lowFreqValue > 50) {
-            for (var i = 0; i < shapes.length; i++) {
-                // this function moves and randomizes some 
-                // of the parameters for each shape
-                if (mouseDown === true) {
-                    shapes[i].style.transform = `rotate(0deg)
-                                 scale(1)
-                                 translate3d(${mouseX}px,${mouseY}px,0px)`
-                    shapes[i].style.filter = `blur(0px)
-                              drop-shadow(${lowFreqValue}rem ${midFreqValue}rem ${lowFreqValue}rem white)`
-                }
-                if (mouseDown === false) {
-                    zAxisValue = `${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.bottom*0.2)}`
-                    shapes[i].style.transform = `rotate(${getRndInt(0,10)}deg)
-                                 perspective(${getRndInt(0,50)}px)
-                                 translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rectLeftQuarter,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(rect.bottom,rect.top)}px, ${zAxisValue}px)
-                                 scale(${midFreqValue*0.05})`
-                }
-                counter1 = 0
+    
+        // fft size is 4096 so I think 20,000Hz is across half that range?
+        freqValue0to100 = AUDIO.dataArray.slice(0, 10).reduce((partialSum, a) => partialSum + a, 0) * 0.1
+        freqValue200to400 = AUDIO.dataArray.slice(100, 200).reduce((partialSum, a) => partialSum + a, 0) * 0.01
+        freqValue600to800 = AUDIO.dataArray.slice(600, 700).reduce((partialSum, a) => partialSum + a, 0) * 0.01
+        freqValue1000to1200 = AUDIO.dataArray.slice(900, 1000).reduce((partialSum, a) => partialSum + a, 0) * 0.01
+        freqValue2000to5000 = AUDIO.dataArray.slice(1200, 1300).reduce((partialSum, a) => partialSum + a, 0) * 0.01
+        freqValues = [freqValue0to100, freqValue200to400, freqValue600to800, freqValue1000to1200, freqValue2000to5000]
+        for (var i = 0; i < shapes.length; i++) {
+            shapes[i].style.filter = `drop-shadow(${freqValue0to100}px ${freqValue0to100}px ${freqValue200to400}px white)
+                                      opacity(${freqValues[i]}%) 
+                                      saturate(${freqValues[i]*0.5}%)
+                                      blur(${Math.abs(highestValue-freqValue0to100)}px)`
+        }
+        for (var i = 0; i < shapes.length; i++) {
+            if (mouseDown === true) {
+                shapes[i].style.transform = `rotate(0deg)
+                                             scale(1)
+                                             translate3d(${mouseX}px,${mouseY}px,0px)`
+                shapes[i].style.filter = `blur(0px)
+                                          opacity(${freqValues[i]}%) 
+                                          saturate(${freqValues[i]*0.5}%)
+                                          drop-shadow(${freqValue0to100}px ${freqValue200to400}px ${freqValue0to100}px white)`
             }
         }
-        counter1++
+        
+        if (counter1 > 2 && freqValue0to100 > highestValue *0.95) {
+            for (var i = 0; i < shapes.length; i++) {
+                if (mouseDown === false) {
+                    shapes[i].style.transform = `rotate(${freqValue0to100 % 360}deg)
+                                                 scale(${freqValue0to100*0.01})
+                                                 translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,0px)`
+                    counter1 = 0
+                }
+            }
+        }
     }
+    counter1++
     previousTimeStamp = timestamp
     window.requestAnimationFrame(step)
 }

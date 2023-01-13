@@ -13,23 +13,22 @@ const audioElement = document.getElementById("parsingAPath")
 // pass it into the audio context
 export let track = audioContext.createMediaElementSource(audioElement)
 
-// function nextTrack() {
-//     track.close()
-//     audioElement.setAttribute('src', 'media/Otodojo_Tracks/Otodojo & Jason ddb - One Way Or Another (premaster).mp3')
-//     track = audioContext.createMediaElementSource(audioElement)
-// }
-// window.nextTrack = nextTrack
-
 // create the analyser node
 export const analyser = new AnalyserNode(audioContext)
-analyser.fftSize = 16384
-analyser.smoothingTimeConstant = 0.9
+analyser.fftSize = 4096
+analyser.smoothingTimeConstant = 0.3
+
+// low pass filter
+const lowPassFilter = new BiquadFilterNode(audioContext)
+lowPassFilter.frequency.value = 20
+lowPassFilter.type = 'lowpass'
 
 export const bufferLength = analyser.frequencyBinCount
 export const dataArray = new Uint8Array(bufferLength)
 analyser.getByteTimeDomainData(dataArray)
 
 // connect to the output
+// track.connect(lowPassFilter)
 track.connect(analyser).connect(audioContext.destination)
 
 // follow this 
