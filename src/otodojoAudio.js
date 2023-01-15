@@ -61,16 +61,6 @@ document.addEventListener('keyup', event => {
     }
 })
 
-// event = keyup or keydown
-let initialFlag = false
-document.addEventListener('mousedown', event => {
-    if (initialFlag === false) {
-        // play pause
-        togglePlay()
-        initialFlag = true
-    }
-})
-
 playButton.addEventListener(
     "click",
     () => {

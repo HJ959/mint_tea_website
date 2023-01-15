@@ -8,6 +8,7 @@ const mainScreenElement = document.getElementById('mainScreen')
 rect = mainScreenElement.getBoundingClientRect()
 rectLeftQuarter = rect.right * 0.25
 console.log(rect, rectLeftQuarter)
+
 function updateImageZone() {
     rect = mainScreenElement.getBoundingClientRect()
     rectLeftQuarter = rect.right * 0.25
@@ -98,7 +99,7 @@ function step(timestamp) {
         if (freqValue0to100 > highestValue) {
             highestValue = freqValue0to100
         }
-    
+
         // fft size is 4096 so I think 20,000Hz is across half that range?
         freqValue0to100 = AUDIO.dataArray.slice(0, 10).reduce((partialSum, a) => partialSum + a, 0) * 0.1
         freqValue200to400 = AUDIO.dataArray.slice(100, 200).reduce((partialSum, a) => partialSum + a, 0) * 0.01
@@ -106,34 +107,47 @@ function step(timestamp) {
         freqValue1000to1200 = AUDIO.dataArray.slice(900, 1000).reduce((partialSum, a) => partialSum + a, 0) * 0.01
         freqValue2000to5000 = AUDIO.dataArray.slice(1200, 1300).reduce((partialSum, a) => partialSum + a, 0) * 0.01
         freqValues = [freqValue0to100, freqValue200to400, freqValue600to800, freqValue1000to1200, freqValue2000to5000]
-        
-        for (var i = 0; i < shapes.length; i++) {
-            shapes[i].style.filter = `drop-shadow(${freqValue0to100}px ${freqValue0to100}px ${freqValue200to400}px var(--main-pink))
-                                      opacity(${freqValue0to100*0.5}%) 
-                                      saturate(${freqValues[i]*0.5}%)
-                                      blur(${Math.abs(highestValue-freqValue0to100)}px)`
-        }
-        for (var i = 0; i < shapes.length; i++) {
-            if (mouseDown === true) {
+
+        // for (var i = 0; i < shapes.length; i++) {
+        //     shapes[i].style.filter = `drop-shadow(${freqValue0to100}px ${freqValue0to100}px ${freqValue200to400}px var(--main-pink))
+        //                               opacity(${freqValue0to100*0.5}%) 
+        //                               saturate(${freqValues[i]*0.5}%)
+        //                               blur(${Math.abs(highestValue-freqValue0to100)}px)`
+        // }
+
+        shapes[getRndInt(0, shapes.length - 1)].style.filter = `
+                                       opacity(${freqValue0to100*0.5}%) 
+                                       saturate(${freqValues[getRndInt(0,freqValues.length-1)]*0.5}%)
+                                       blur(${Math.abs(highestValue*4-freqValue0to100*4)}px)`
+        if (mouseDown === true) {
+            for (var i = 0; i < shapes.length; i++) {
                 shapes[i].style.transform = `rotate(0deg)
                                              scale(1)
                                              translate3d(${mouseX}px,${mouseY}px,0px)`
                 shapes[i].style.filter = `blur(0px)
-                                          opacity(${freqValues[i]}%) 
+                                          opacity(0.9) 
                                           saturate(${freqValues[i]*0.5}%)
                                           drop-shadow(${freqValue0to100}px ${freqValue200to400}px ${freqValue0to100}px white)`
             }
         }
-        
-        if (counter1 > 5 && freqValue0to100 > highestValue *0.955) {
-            for (var i = 0; i < shapes.length; i++) {
-                if (mouseDown === false) {
-                    shapes[i].style.transform = `rotate(${freqValue0to100 % 360}deg)
-                                                 scale(${freqValue0to100*0.009})
+
+        if (counter1 > 5 && freqValue0to100 > highestValue * 0.955) {
+            // for (var i = 0; i < shapes.length; i++) {
+            //     if (mouseDown === false) {
+            //         shapes[i].style.transform = `rotate(${freqValue0to100 % 360}deg)
+            //                                      scale(${freqValue0to100*0.009})
+            //                                      translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,0px)`
+            //         counter1 = 0
+            //     }
+            // }
+
+            if (mouseDown === false) {
+                shapes[getRndInt(0, shapes.length - 1)].style.transform = `rotate(${freqValue0to100 % 360}deg)
+                                                 scale(${getRndInt(0,20)*0.1})
                                                  translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,0px)`
-                    counter1 = 0
-                }
+                counter1 = 0
             }
+
         }
     }
     counter1++
