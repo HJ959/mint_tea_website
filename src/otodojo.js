@@ -1,4 +1,4 @@
-import './main.css'
+// import './main.css'
 import './otodojo.css'
 import * as AUDIO from './otodojoAudio.js'
 
@@ -106,9 +106,10 @@ function step(timestamp) {
         freqValue1000to1200 = AUDIO.dataArray.slice(900, 1000).reduce((partialSum, a) => partialSum + a, 0) * 0.01
         freqValue2000to5000 = AUDIO.dataArray.slice(1200, 1300).reduce((partialSum, a) => partialSum + a, 0) * 0.01
         freqValues = [freqValue0to100, freqValue200to400, freqValue600to800, freqValue1000to1200, freqValue2000to5000]
+        
         for (var i = 0; i < shapes.length; i++) {
-            shapes[i].style.filter = `drop-shadow(${freqValue0to100}px ${freqValue0to100}px ${freqValue200to400}px white)
-                                      opacity(${freqValues[i]}%) 
+            shapes[i].style.filter = `drop-shadow(${freqValue0to100}px ${freqValue0to100}px ${freqValue200to400}px var(--main-pink))
+                                      opacity(${freqValue0to100*0.5}%) 
                                       saturate(${freqValues[i]*0.5}%)
                                       blur(${Math.abs(highestValue-freqValue0to100)}px)`
         }
@@ -124,11 +125,11 @@ function step(timestamp) {
             }
         }
         
-        if (counter1 > 2 && freqValue0to100 > highestValue *0.95) {
+        if (counter1 > 5 && freqValue0to100 > highestValue *0.955) {
             for (var i = 0; i < shapes.length; i++) {
                 if (mouseDown === false) {
                     shapes[i].style.transform = `rotate(${freqValue0to100 % 360}deg)
-                                                 scale(${freqValue0to100*0.01})
+                                                 scale(${freqValue0to100*0.009})
                                                  translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,0px)`
                     counter1 = 0
                 }
