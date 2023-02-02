@@ -2,6 +2,8 @@
 import './otodojo.css'
 import * as AUDIO from './otodojoAudio.js'
 
+// if user swipes up 
+
 // if window resize we want to change the scope of the image positions
 let rect, rectLeftQuarter = 0
 const mainScreenElement = document.getElementById('mainScreen')
@@ -36,6 +38,7 @@ function logKey(e) {
     if (mouseX < 0) mouseX = 0
     if (mouseY < 0) mouseY = 0
 }
+
 // random int function
 function getRndInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
@@ -89,14 +92,7 @@ function step(timestamp) {
         // it's split into a rough freuqncy range
         AUDIO.analyser.getByteFrequencyData(AUDIO.dataArray)
 
-        // var rms = 0
-        // for (var i = 0; i < AUDIO.dataArray.length; i++) {
-        //     rms += AUDIO.dataArray[i] * AUDIO.dataArray[i]
-        // }
-        // rms /= AUDIO.dataArray.length
-        // freqValue0to100 = map(Math.sqrt(rms), [0,highestValue], [0,255])
-
-        if (freqValue0to100 > highestValue) {
+        if (freqValue0to100 > highestValue * 0.8) {
             highestValue = freqValue0to100
         }
 
@@ -108,18 +104,11 @@ function step(timestamp) {
         freqValue2000to5000 = AUDIO.dataArray.slice(1200, 1300).reduce((partialSum, a) => partialSum + a, 0) * 0.01
         freqValues = [freqValue0to100, freqValue200to400, freqValue600to800, freqValue1000to1200, freqValue2000to5000]
 
-        // for (var i = 0; i < shapes.length; i++) {
-        //     shapes[i].style.filter = `drop-shadow(${freqValue0to100}px ${freqValue0to100}px ${freqValue200to400}px var(--main-pink))
-        //                               opacity(${freqValue0to100*0.5}%) 
-        //                               saturate(${freqValues[i]*0.5}%)
-        //                               blur(${Math.abs(highestValue-freqValue0to100)}px)`
-        // }
-
         shapes[getRndInt(0, shapes.length - 1)].style.filter = `
                                        opacity(${freqValue0to100*0.5}%) 
                                        saturate(${freqValues[getRndInt(0,freqValues.length-1)]*0.5}%)
                                        blur(${Math.abs(highestValue*4-freqValue0to100*4)}px)`
-        if (mouseDown === true) {
+        if (mouseDown === true && AUDIO.playButton.dataset.playing == "true") {
             for (var i = 0; i < shapes.length; i++) {
                 shapes[i].style.transform = `rotate(0deg)
                                              scale(1)
@@ -132,15 +121,6 @@ function step(timestamp) {
         }
 
         if (counter1 > 5 && freqValue0to100 > highestValue * 0.955) {
-            // for (var i = 0; i < shapes.length; i++) {
-            //     if (mouseDown === false) {
-            //         shapes[i].style.transform = `rotate(${freqValue0to100 % 360}deg)
-            //                                      scale(${freqValue0to100*0.009})
-            //                                      translate3d(${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,${minusOrNotArray[getRndInt(0,1)]}${getRndInt(0,rect.right)}px,0px)`
-            //         counter1 = 0
-            //     }
-            // }
-
             if (mouseDown === false) {
                 shapes[getRndInt(0, shapes.length - 1)].style.transform = `rotate(${freqValue0to100 % 360}deg)
                                                  scale(${getRndInt(0,20)*0.1})

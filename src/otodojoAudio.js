@@ -8,7 +8,7 @@ export const AudioContext = window.AudioContext || window.webkitAudioContext
 export const audioContext = new AudioContext()
 
 // get the audio element
-const audioElement = document.getElementById("parsingAPath")
+export const audioElement = document.getElementById("parsingAPath")
 
 // pass it into the audio context
 export let track = audioContext.createMediaElementSource(audioElement)
@@ -35,7 +35,7 @@ track.connect(analyser).connect(audioContext.destination)
 // https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode
 
 // Select our play button
-const playButton = document.getElementById("playPause")
+export const playButton = document.getElementById("playPause")
 
 function togglePlay() {
     // Check if context is in suspended state (autoplay policy)
@@ -54,20 +54,12 @@ function togglePlay() {
 }
 
 // event = keyup or keydown
-document.addEventListener('keyup', event => {
+window.addEventListener('keyup', event => {
     if (event.code === 'Space') {
         // play pause
         togglePlay()
     }
 })
-
-playButton.addEventListener(
-    "click",
-    () => {
-        togglePlay()
-    },
-    false
-)
 
 audioElement.addEventListener(
     "ended",
@@ -76,3 +68,31 @@ audioElement.addEventListener(
     },
     false
 )
+
+// if the user leaves the tab and it becomes inactive stop playing sound and video
+window.addEventListener("visibilitychange", event => {
+    if (document.visibilityState != "visible") {
+        audioElement.pause()
+    }
+})
+
+// taken from https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
+let touchstartY = 0;
+let touchendY = 0;
+
+const slider = document.getElementById('mainScreen');
+
+function handleGesture() {
+  if (touchendY + 200 < touchstartY) {
+    togglePlay();
+  }
+}
+
+slider.addEventListener('touchstart', e => {
+  touchstartY = e.changedTouches[0].screenY;
+})
+
+slider.addEventListener('touchend', e => {
+  touchendY = e.changedTouches[0].screenY;
+  handleGesture();
+})

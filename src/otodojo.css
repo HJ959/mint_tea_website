@@ -9,6 +9,7 @@ html {
     height: 100%;
     width: 100%;
     font-size: 2vw;
+    overflow: hidden;
 }
 
 body {
@@ -16,11 +17,13 @@ body {
     width: 100%;
     min-height: 100%;
     font-family: 'Roboto', sans-serif;
-    background: radial-gradient(var(--main-white), var(--main-blue));
+    background: radial-gradient(var(--main-blue), var(--main-white));
+    /* background: radial-gradient(var(--main-black), var(--main-blue)); */
 }
 
 #loadOverlay {
     display: none;
+    overflow: hidden;
 }
 
 .border {
@@ -38,6 +41,7 @@ p {
 
 .container {
     width: 100%;
+    overflow: hidden;
     height: 100%;
     justify-items: center;
     align-items: center;
@@ -99,12 +103,24 @@ p {
 .screen {
     grid-area: screen;
     min-width: 70%;
+    overflow: hidden;
     min-height: 80%;
 }
 
 button {
     background: var(--main-pink);
     /* border: 2px solid var(--main-black); */
+}
+
+#UXInstruction {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    /* filter: blur(0); */
+    /* left: 33%; */
+    width: 80vmin;
+    z-index: 1;
 }
 
 #shape1,
@@ -121,6 +137,7 @@ button {
     transition: 0.22s;
     transition-property: transform;
     filter: opacity(0);
+    overflow: hidden;
 }
 
 /* ------------------ Useful ------------- */
