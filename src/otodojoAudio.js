@@ -36,6 +36,7 @@ track.connect(analyser).connect(audioContext.destination)
 
 // Select our play button
 export const playButton = document.getElementById("playPause")
+export const UXInstruction = document.getElementById("UXInstruction")
 
 function togglePlay() {
     // Check if context is in suspended state (autoplay policy)
@@ -47,9 +48,11 @@ function togglePlay() {
     if (playButton.dataset.playing === "false") {
         audioElement.play()
         playButton.dataset.playing = "true"
+        UXInstruction.style.filter = `blur(100px)`
     } else if (playButton.dataset.playing === "true") {
         audioElement.pause()
         playButton.dataset.playing = "false"
+        UXInstruction.style.filter = `blur(0px)`
     }
 }
 
