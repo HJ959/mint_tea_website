@@ -22,10 +22,8 @@ body {
 }
 
 #loadOverlay {
-    /* display: none; */
+    display: none;
     overflow: hidden;
-    transition: 2s;
-    filter: blur(500px);
 }
 
 .border {
