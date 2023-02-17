@@ -34,7 +34,7 @@ function catCycleNext() {
   var buttonValue = elmntNext.value
 
   buttonValue++
-  if (buttonValue == 8) {
+  if (buttonValue == 9) {
     buttonValue = 0
   }
   returnCatInfo(buttonValue)
@@ -47,7 +47,7 @@ function catCyclePrevious() {
 
   buttonValue--
   if (buttonValue == -1) {
-    buttonValue = 7
+    buttonValue = 8
   }
   returnCatInfo(buttonValue)
   elmntNext.value = buttonValue
@@ -55,7 +55,7 @@ function catCyclePrevious() {
 window.catCyclePrevious = catCyclePrevious
 
 // displays the selected div on the catalogue screen
-const catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004', 'catMTUSB01', 'catMTWL001', 'catMTUSB002', 'catMT005']
+const catIDList = ['catMT001', 'catMT002', 'catMT003', 'catMT004', 'catMTUSB01', 'catMTWL001', 'catMTUSB002', 'catMT005', 'catMINT06']
 function returnCatInfo(buttonValue) {
   catIDList.forEach((item) => {
     var itemID = document.getElementById(item)

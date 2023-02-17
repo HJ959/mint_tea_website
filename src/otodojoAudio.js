@@ -49,10 +49,12 @@ function togglePlay() {
         audioElement.play()
         playButton.dataset.playing = "true"
         UXInstruction.style.filter = `blur(100px)`
+        document.body.style.background = 'radial-gradient(var(--main-blue), var(--main-black))'
     } else if (playButton.dataset.playing === "true") {
         audioElement.pause()
         playButton.dataset.playing = "false"
         UXInstruction.style.filter = `blur(0px)`
+        document.body.style.background = 'radial-gradient(var(--main-blue), var(--main-white))'
     }
 }
 
