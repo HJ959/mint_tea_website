@@ -1,0 +1,164 @@
+:root {
+    --main-blue: #37d2ff;
+    --main-black: #00000F;
+    --main-pink: #a55069;
+    --main-white: #FFFFF0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-size: 2vw;
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(var(--main-blue), var(--main-white));
+    /* background: radial-gradient(var(--main-black), var(--main-blue)); */
+}
+
+#loadOverlay {
+    display: none;
+    overflow: hidden;
+}
+
+.border {
+    background: var(--main-blue);
+    -webkit-clip-path: inset(0% 0% 0% 0%);
+    clip-path: inset(0% 0% 0% 0%);
+    overflow: hidden;
+    z-index: 5;
+    /* border: 4px solid var(--main-white); */
+}
+
+p {
+    color: black;
+}
+
+.container {
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 10fr 1fr 4fr;
+    grid-template-areas:
+        "screen screen screen"
+        "textDisplay textDisplay textDisplay"
+        "back play forward";
+}
+
+.back {
+    grid-area: back;
+    z-index: 10;
+    /* border: 4px solid var(--main-white); */
+    width: 100%;
+    text-align: center;
+}
+
+.forward {
+    grid-area: forward;
+    z-index: 10;
+    /* border: 4px solid var(--main-white); */
+    width: 100%;
+    text-align: center;
+}
+
+.forward, .back, .textDisplay, .play {
+    display: none;
+}
+
+.play {
+    grid-area: play;
+    z-index: 10;
+    /* border: 4px solid var(--main-white); */
+    width: 100%;
+    text-align: center;
+}
+
+.textDisplay {
+    grid-area: textDisplay;
+    z-index: 10;
+    animation: slide-left 10s linear infinite;
+    overflow: hidden;
+    text-align: center;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translate(50%, 0);
+    }
+
+    100% {
+        transform: translate(-50%, 0);
+    }
+}
+
+.screen {
+    grid-area: screen;
+    min-width: 70%;
+    overflow: hidden;
+    min-height: 80%;
+}
+
+button {
+    background: var(--main-pink);
+    /* border: 2px solid var(--main-black); */
+}
+
+#UXInstruction {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    /* filter: blur(0); */
+    /* left: 33%; */
+    width: 80vmin;
+    z-index: 1;
+}
+
+#shape1,
+#shape2,
+#shape3,
+#shape4,
+#shape5 {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    /* width: 100%;
+    height: 100%; */
+    transition: 0.9s;
+    transition-property: transform;
+    filter: opacity(0);
+    overflow: hidden;
+}
+
+/* ------------------ Useful ------------- */
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently */
+    /* supported by Chrome, Edge, Opera and Firefox */
+}
+
+.disableSave {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}

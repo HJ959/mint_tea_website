@@ -1,0 +1,255 @@
+/* Mobile Styles */
+@media only screen and (max-width: 500px) {
+  .about {
+    display: none;
+    padding: 4vw;
+    margin: 4vw;
+    z-index: 9;
+    text-align: left;
+    height: 100%;
+    width: 90%;
+    color: white;
+  }
+  p {
+    font-size: calc(1em + 2vw);
+  }
+
+  #catImage {
+    height: 90%;
+    width: 90%;
+  }
+  #draggableDivCat, #draggableDivAbout {
+    padding: inherit;
+    background-color: rgba(0,0,150,1);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+/*===============================================================*/
+/* Tablet Styles */
+@media only screen and (min-width: 501px) and (max-width: 960px) {
+  .about {
+    display: none;
+    padding: 4vw;
+    margin: 4vw;
+    z-index: 9;
+    text-align: left;
+    height: 100%;
+    width: 90%;
+    color: white;
+  }
+  #catImage {
+    height: 90%;
+    width: 90%;
+    margin: 3%;
+  }
+  #draggableDivCat, #draggableDivAbout {
+    padding: inherit;
+    background-color: rgba(0,0,150,1);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+}
+/*===============================================================*/
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  #draggableDivCat, #draggableDivCatHeader {
+    top: 15%;
+    left: 50%;
+  }
+  #draggableDivAbout, #draggableDivAboutHeader {
+    top: 15%;
+    left: 1%;
+  }
+  #draggableDivCat, #draggableDivAbout {
+    background-color: rgba(0,0,150,0.6);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-bottom: 3vw;
+  }
+
+  #draggableDivAbout {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    text-align: left;
+    width: 40vw;
+    color: white;
+  }
+  #draggableDivAboutHeader {
+    text-align: center;
+    cursor: move;
+    padding: 0;
+    z-index: 10;
+    color: white;
+  }
+
+  #draggableDivCat {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    text-align: left;
+    width: 600px;
+    color: white;
+  }
+  #draggableDivCatHeader {
+    text-align: center;
+    padding: 0;
+    cursor: move;
+    z-index: 10;
+    color: white;
+  }
+  #catImage {
+    height: 90%;
+    width: 90%;
+  }
+
+  p {
+    font-size: calc(0.5em + 0.5vw);
+  }
+}
+/*===============================================================*/
+/* Main styles */
+@media screen and (min-width: 50em) {
+  html {
+    font-size: 2vw;
+  }
+  #catImage {
+    height: 100%;
+    width: 100%;
+    margin: 5%;
+  }
+}
+body {
+  background-color: black;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: white;
+  font-weight: 700;
+}
+a:hover {
+  color: rgba(255, 0, 255, 1);
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 5vw;
+}
+
+html {
+  height: 100%;
+}
+
+button {
+  color: white;
+  margin: 4%;
+  background-color: rgba(0,0,0,0);
+  box-shadow: 0 2px 4px 0 rgba(200, 200, 200, 1), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+button:hover {
+  transition: 0.5s;
+  color: white;
+  margin: 4%;
+  background-color: rgba(255, 0, 255, 0.5);
+  box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#loadOverlay{display: none;}
+
+canvas {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    z-index: -1;
+    height: 80%;
+    width: 80%;
+    box-shadow: 1px 1px 1px 1px rgba(255, 255, 255, 1), 1px 1px 1px 1px rgba(0, 0, 0, 0.19);
+}
+
+iframe {
+  width: 32px;
+  height: 32px;
+  margin: 0 0 0 3vw;
+}
+/* For right left arrow buttons */
+i {
+  border: solid white;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 7px;
+  margin: 2px;
+}
+#previousButton {
+  float: left;
+  padding: 5px;
+  margin: 2px;
+}
+#nextButton {
+  margin: 2px;
+  padding: 5px;
+  float: right;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+/*================================*/
+
+.navbar-default .navbar-brand {
+ color:white;
+ background-color: rgba(0, 0, 0, 0);
+ margin: 0 0 0 1vw;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: rgba(255, 0, 255, 1);
+}
+
+.navbar {
+  color: white;
+  background-color: rgba(0, 0, 0, 1);
+  border: 0px solid rgba(0,0,0,0);
+  margin: 0 0 0 3vw;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color:white;
+  margin: 0 0 0 2vw;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: rgba(255, 0, 255, 1);
+}
+
+.row {
+  margin: 0px;
+}
+.navbar-collapse {
+  padding-right: 7%;
+  padding-left: 7%;
+}
+
+#draggableDivCatHeader, #draggableDivAboutHeader {
+  font-size: 2em;
+  font-weight: 700;
+  padding-bottom: 2vw;
+  margin-bottom: 2vw;
+  box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#innerBorder {
+  box-shadow: 0 4px 8px 0 rgba(255, 0, 255, 1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 2%;
+  padding: 4%;
+}
+
+#catMT002, #catMT003, #catMT004, #catMTUSB01, #catMTWL001, #catMTUSB002, #catMT005, #catMINT06 {
+  display: none;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Otodojo – Parsing a Path | Mint Tea Records</title>
+    <meta name="description" content="An interactive audio-visual experience for Otodojo's Parsing a Path EP on Mint Tea Records.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Otodojo – Parsing a Path">
+    <meta property="og:description" content="An interactive audio-visual experience for Otodojo's Parsing a Path EP.">
+    <meta property="og:type" content="music.album">
+    <meta property="og:url" content="https://mint-tea-records.co.uk/otodojo.html">
+    <meta property="og:image" content="https://mint-tea-records.co.uk/media/otodojo-parsing-a-path-artwork.jpg">
+    <meta property="og:site_name" content="Mint Tea Records">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Otodojo – Parsing a Path">
+    <meta name="twitter:description" content="An interactive audio-visual experience for Otodojo's Parsing a Path EP.">
+    <meta name="twitter:image" content="https://mint-tea-records.co.uk/media/otodojo-parsing-a-path-artwork.jpg">
+</head>
+
+<body draggable="false">
+    <div id="loadOverlay"
+        style="background-color:rgb(0, 0, 0); position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;">
+    </div>
+    <div class="container" draggable="false" role="main" aria-label="Otodojo audio visualiser">
+        <picture>
+            <source srcset="media/start_otodojo.webp" type="image/webp">
+            <img id="UXInstruction" src="media/start_otodojo.png" alt="Instructions: tap play to start, drag shapes to move them, tap shapes to randomise" loading="eager">
+        </picture>
+        <div id="mainScreen" class="screen" role="region" aria-label="Visual display area">
+            <img class="noselect" onclick="shuffleShape(this)" id="shape1" src="media/shapes/shape1.png"
+                draggable="false" alt="Decorative audio-reactive shape" oncontextmenu="return false;">
+            <img class="noselect" onclick="shuffleShape(this)" id="shape2" src="media/shapes/shape2.png"
+                draggable="false" alt="Decorative audio-reactive shape" oncontextmenu="return false;">
+            <img class="noselect" onclick="shuffleShape(this)" id="shape3" src="media/shapes/shape3.png"
+                draggable="false" alt="Decorative audio-reactive shape" oncontextmenu="return false;">
+            <img class="noselect" onclick="shuffleShape(this)" id="shape4" src="media/shapes/shape4.png"
+                draggable="false" alt="Decorative audio-reactive shape" oncontextmenu="return false;">
+            <img class="noselect" onclick="shuffleShape(this)" id="shape5" src="media/shapes/shape5.png"
+                draggable="false" alt="Decorative audio-reactive shape" oncontextmenu="return false;">
+            <audio draggable="false" id="parsingAPath"
+                src="media/Otodojo_Tracks/Otodojo - Parsing a Path - Master.mp3" preload="auto"></audio>
+        </div>
+
+        <div class="textDisplay" aria-live="polite" aria-atomic="true">
+            <p>Otodojo - Parsing a Path</p>
+        </div>
+
+        <div class="back">
+            <button id="backButton" data-playing="false" role="button" aria-label="Previous track">
+                <span>Previous track</span>
+            </button>
+        </div>
+
+        <div class="play">
+            <button id="playPause" data-playing="false" role="button" aria-label="Play or pause audio" aria-pressed="false">
+                <span>Toggle play</span>
+            </button>
+        </div>
+
+        <div class="forward">
+            <button id="forwardButton" data-playing="false" role="button" aria-label="Next track">
+                <span>Next track</span>
+            </button>
+        </div>
+
+    </div>
+</body>
+
+</html>
