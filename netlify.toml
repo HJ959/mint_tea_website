@@ -4,3 +4,14 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+# Serve WebP images when the browser supports them
+[[headers]]
+  for = "/media/*.png"
+  [headers.values]
+    Vary = "Accept"
+
+[[headers]]
+  for = "/media/*.jpg"
+  [headers.values]
+    Vary = "Accept"
